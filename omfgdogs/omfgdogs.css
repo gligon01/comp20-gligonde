@@ -1,0 +1,36 @@
+a:link { 
+	color:green;
+}
+
+a:visited { 
+	color:green; 
+}
+
+body {
+	background-image:url('omfgdogs.gif');
+	font-weight:bold;
+	font-family:"Comic Sans MS";
+}
+
+div.no {
+	text-align:center;
+	font-size:40px;
+	visibility:hidden;
+}
+
+div.pos {
+	position:fixed;
+	background-color:white;
+	bottom:5px;
+	right:5px;
+	font-size:20px;
+}
+
+@media screen and (max-width : 992px) {
+	div.no {
+		visibility: visible;
+	}
+	body {
+		background-image:none;
+	}
+}
