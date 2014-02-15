@@ -4,6 +4,24 @@
 <html>
 
 <head>
+<meta charset="utf-8">
+<script>
+function newsFeed()
+{
+	var node=document.createElement("p");
+	var currentTime = new Date();
+	var textnode=document.createTextNode(
+		(currentTime.getMonth()+1) + "/" +
+		currentTime.getDate() + "/" +
+		currentTime.getFullYear() + " " +
+		currentTime.getHours() + ":" +
+		currentTime.getMinutes() + " - " +
+		document.getElementById("msg").value);
+	node.appendChild(textnode);
+	document.getElementById("status").appendChild(node);
+	document.getElementById("msg").value='';
+}
+</script>
 <title>Fecesbook</title>
 </head>
 
@@ -20,7 +38,7 @@
 		</ul>
 	</div>
 	<h2 id="fullname">Barney Gumble</h2>
-	<h3>What are you thinking about? <input type="text" id="msg" name="msg" size="30" /></h3>
+	<h3>What are you thinking about? <input type="text" id="msg" name="msg" size="30" onchange="newsFeed()"></h3>
 	<h3>Updates</h3>
 	<div id="status">
 	</div>
