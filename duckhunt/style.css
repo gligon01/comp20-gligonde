@@ -2,9 +2,14 @@
     text-align: center;
 }
 
+img{
+	display: none;
+}
+
 canvas {
     background-color: #87CEEB;
 }
 
 body {
+
 }
