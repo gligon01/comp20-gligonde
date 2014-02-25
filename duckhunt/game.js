@@ -1,14 +1,16 @@
 
 function draw() {
     canvas = document.getElementById('game');
-    sprite = document.getElementById('dh');
+    // spritesheet to extract images of dog, bush, tree, and birds
     sprite = new Image();
-    
+
     // Check if canvas is supported on browser
     if (canvas.getContext) {
         ctx = canvas.getContext('2d');
+        // Sky
        	ctx.fillStyle = "#87CEEB";
         ctx.fillRect (0, 0, 800, 520);
+        // Dirt Road
         ctx.fillStyle = "#C96A1B";
         ctx.fillRect (0, 520, 800, 80);
 
