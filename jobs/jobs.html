@@ -14,12 +14,13 @@
 		
 		function JobNode(value) {
 			node=document.createElement("div");
-			node.id ='unit';
+			node.setAttribute("class","unit");
 			node.appendChild(document.createTextNode("Company: " + value.company));
 			node.appendChild(document.createElement("br"));
 			node.appendChild(document.createTextNode("Position: " + value.position));
 			node.appendChild(document.createElement("br"));
 			node.appendChild(document.createTextNode("Location: " + value.location));
+			node.appendChild(document.createElement("br"));
 			document.getElementById("list").appendChild(node);
 		}
 

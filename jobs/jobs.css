@@ -1,4 +1,13 @@
 
-div {
-	
+div.unit {
+	background-color: #64C978;
+	border-style: solid;
+	border-width:5px;
+	border-color: #1E894C;
+	border-radius:25px;
+	float:left;
+	font-family: Garamond;
+	margin: 10px;
+	padding:10px 40px;
+	width:300px;
 }
