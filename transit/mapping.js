@@ -15,6 +15,7 @@ function getMyLocation() {
         alert("Geolocation is not supported by your web browser =/");
     }
 }
+// For some reason it won't commit so I'll just put comments
 
 function initialize() {
     getMyLocation();
