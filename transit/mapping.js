@@ -1,3 +1,4 @@
+
 function getMyLocation() {
     lat = -99999;
     lng = -99999;
