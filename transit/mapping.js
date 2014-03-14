@@ -187,7 +187,7 @@ function drawLines() {
           title: Tstops[i].Station,
           
 
-          icon: image
+          //icon: image
         });
         Tmarker.setMap(map);
     }
