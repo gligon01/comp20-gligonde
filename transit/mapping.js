@@ -47,6 +47,7 @@
   var myLine;    
   var locations;
   var shortestDist = 99999;
+  var shortestStat;
   var scheduleData;
   
   var Tstops;
@@ -101,13 +102,6 @@ function renderMap() {
     title: "Here I Am! Let's do this!"
   });
   marker.setMap(map);
-
-  //Open info window on click of marker
-  google.maps.event.addListener(marker, 'click', function() {
-    var infowindow = new google.maps.InfoWindow();
-    infowindow.setContent(marker.title);
-    infowindow.open(map, marker);
-  });
   
   parse();
 }
@@ -145,8 +139,7 @@ function parse() {
       var d = R * c; 
       if(d < shortestDist) {
         shortestDist = d;
-        //console.log("calculate");
-        //console.log(shortestDist);
+        shortestStat = value.Line;
       }
     }
       
@@ -226,6 +219,15 @@ function drawLines() {
 
     linePath2Red.setMap(map);
   }
+
+  //Open info window on click of marker
+  google.maps.event.addListener(marker, 'click', function() {
+    var infowindow = new google.maps.InfoWindow();
+    var message = 'You are here &#33; The closest station is &#58;'+'</br>'+
+                  shortestStat+'&#58; ' + (shortestDist/1.609) + ' miles';
+    infowindow.setContent(message);
+    infowindow.open(map, marker);
+  });
 
 }
 
