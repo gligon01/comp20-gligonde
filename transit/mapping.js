@@ -175,8 +175,6 @@ function drawLines() {
       dot = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng);
       var Tmarker = new google.maps.Marker({
           position: dot,
-          
-
           title: Tstops[i].Station,
           
 
@@ -194,9 +192,6 @@ function drawLines() {
     new google.maps.LatLng(42.233391, -71.007153),
     new google.maps.LatLng(42.2078543, -71.0011385)
   ];
-
-  console.log(scheduleData["line"]);
-  console.log(color);
 
   var linePath = new google.maps.Polyline({
     path: linePathCoordinates,
@@ -227,35 +222,36 @@ function drawLines() {
                   shortestStat+'&#58; ' + Math.round((shortestDist/1.609)*100)/100 + 
                   ' miles away from your current location';
     infowindow.setContent(message);
+    infowindow.close(); // Close previous window
     infowindow.open(map, marker);
   });
 
-}
+  google.maps.event.addListener(Tmarker, 'click', function() {
+    var infowindow = new google.maps.InfoWindow();
 
-function createMarker(value)
-      {
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location
-        });
+    message = '<h1>'+Tmarker.title+'</h1>'+
+              '<table border="1" style="width:400px">';
+    for(i=0;i<scheduleData["schedule"].length;i++) {
+      destination = scheduleData["schedule"][i];
+      stops = destination["Predictions"];
+      for(j=0;j<stops.length;j++){
+        s = stops[j];
+        if(s["Stop"] == Tmarker.title) {
+          var minutes = Math.floor(s["Seconds"]/60);
+          var seconds = s["Seconds"] - (minutes * 60);
+          message += '<tr>'+/*'<td>'+ stuff+'</td>'+*/
+                  '<td>'+destination["Destination"]+'</td>'+
+                  '<td>'+minutes+'&#58'+seconds+'</td>'+'</tr>';
+        }
       }
+    }
+    message += '</table>';
 
-
-/*
-function setStations() {
-  
-
-  for(i = 0; i < Tstops["Line"].length; i++) {
-    marker = new google.maps.Marker({
-    position: new google.maps.LatLng(Tstops["Latitude"][i], Tstops["Lngitude"][i]),
-    title: "Here I Am! Let's do this!"
-  });
-  marker.setMap(map);
+    infowindow.setContent(message);
+    infowindow.close(); // Close previous window
+    infowindow.open(map, Tmarker);
   }
 }
-*/
-
-
 
 /*
 stop_of_interest = "Davis";
@@ -271,27 +267,6 @@ for(i = 0; i < data["schedule"].lengh; i++) {
     }
   }
 }
-
 */
-
-/*
-
-}
 
      
-
-function createMarker(place)
-{
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.close();
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
-      }
-*/
