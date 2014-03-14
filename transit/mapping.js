@@ -1,4 +1,38 @@
-  
+/*  
+  function init()
+      {
+        // Faneuil Hall
+        var landmark = new google.maps.LatLng(42.3599611, -71.0567528);
+
+        // Set up map
+        var myOptions = {
+          zoom: 13, // The larger the zoom number, the bigger the zoom
+          center: landmark,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        // Create the map in the "map_canvas" <div>
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+        // Create a marker        
+        var marker = new google.maps.Marker({
+          position: landmark,
+          title: "Faneuil Hall, Boston, MA"
+        });
+        marker.setMap(map);
+
+        // This is a global info window...
+        var infowindow = new google.maps.InfoWindow();
+
+        // Open info window on click of marker
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(marker.title);
+          infowindow.open(map, marker);
+        });
+      }
+*/
+
+
   var myLat = 0;
   var myLng = 0;
   var request = new XMLHttpRequest();
@@ -22,7 +56,7 @@ function getMyLocation() {
         navigator.geolocation.getCurrentPosition(function(position) {
             myLat = position.coords.latitude;
             myLng = position.coords.longitude;
-            renderMap();
+           // renderMap();
           // elem.innerHTML = "<h1>You are in " + lat + ", " + lng + "</h1>";
         });
         // elem.innerHTML = "Getting your location...";
@@ -68,7 +102,7 @@ function renderMap() {
   service = new google.maps.places.PlacesService(map);
   service.search(request, callback);
 }
-*/
+
 }
 
       // Taken from http://code.google.com/apis/maps/documentation/javascript/places.html
