@@ -240,7 +240,7 @@ function drawLines() {
         if(s["Stop"] == Tmarker.title) {
           var minutes = Math.floor(s["Seconds"]/60);
           var seconds = s["Seconds"] - (minutes * 60);
-          message += '<tr>'+/*'<td>'+ stuff+'</td>'+*/
+          message += '<tr>'+
                   '<td>'+destination["Destination"]+'</td>'+
                   '<td>'+minutes+'&#58'+seconds+'</td>'+'</tr>';
         }
@@ -252,7 +252,7 @@ function drawLines() {
     infowindow.close(); // Close previous window
     infowindow.open(map, Tmarker);
   }
-  
+
 }
 
 /*
