@@ -149,13 +149,8 @@ function parse() {
         //console.log("calculate");
         //console.log(shortestDist);
       }
-      
-      location = new google.maps.LatLng(value.Lat, value.Lng);
-      var marker = new google.maps.Marker({
-          position: location
-        });
-      marker.setMap(map);
     }
+      
   }
 
   Tstops.forEach(minDistance);
@@ -170,7 +165,7 @@ function drawLines() {
 
   for(i=0;i<(Tstops.length - 5);i++) {
     if(scheduleData["line"] == Tstops[i].Line) {
-      linePathCoordinates[i] = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng); 
+      linePathCoordinates[i] = new google.maps.LatLng(parseFloat(Tstops[i].Lat), parseFloat(Tstops[i].Lng)); 
     }
   }
 
