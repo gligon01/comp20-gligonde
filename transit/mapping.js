@@ -154,6 +154,7 @@ function drawLines() {
 
   var linePathCoordinates = new Array();
   var linePath2RedCoordinates;
+  k = 0;
   
   if(scheduleData["line"] == 'blue') {
     color = '0000CC';
@@ -166,21 +167,43 @@ function drawLines() {
     image.src = "red_img.jpg";
   } 
 
-  k = 0;
-
   for(i=0;i<(Tstops.length - 5);i++) {
     if(scheduleData["line"] == Tstops[i].Line) {
       linePathCoordinates[k] = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng); 
       k++;
       dot = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng);
-      var Tmarker = new google.maps.Marker({
+      var addMark = new google.maps.Marker({
           position: dot,
           title: Tstops[i].Station,
-          
-
           //icon: image
         });
-        Tmarker.setMap(map);
+        addMark.setMap(map);
+        google.maps.event.addListener(addMark, 'click', function() {
+        var infowindowT = new google.maps.InfoWindow();
+
+        var messageT = '<h1>'+addMark.title+'</h1>'+
+              '<table border="1" style="width:400px">';
+
+      for(i=0;i<scheduleData["schedule"].length;i++) {
+        destination = scheduleData["schedule"][i];
+        stops = destination["Predictions"];
+        for(j=0;j<stops.length;j++){
+         s = stops[j];
+          if(s["Stop"] == addMark.title) {
+            var minutes = Math.floor(s["Seconds"]/60);
+            var seconds = s["Seconds"] - (minutes * 60);
+            messageT += '<tr>'+
+                  '<td>'+destination["Destination"]+'</td>'+
+                  '<td>'+minutes+'&#58'+seconds+'</td>'+'</tr>';
+          }
+        }
+      }
+      messageT += '</table>';
+      console.log("got here");
+      infowindowT.setContent(message);
+      //infowindow.close(); // Close previous window
+      infowindowT.open(map, addMark);
+      });
     }
   }
 
@@ -224,33 +247,6 @@ function drawLines() {
     infowindow.setContent(message);
     //infowindow.close(); // Close previous window
     infowindow.open(map, marker);
-  });
-
-  google.maps.event.addListener(Tmarker, 'click', function() {
-    var infowindowT = new google.maps.InfoWindow();
-
-    message = '<h1>'+Tmarker.title+'</h1>'+
-              '<table border="1" style="width:400px">';
-
-    for(i=0;i<scheduleData["schedule"].length;i++) {
-      destination = scheduleData["schedule"][i];
-      stops = destination["Predictions"];
-      for(j=0;j<stops.length;j++){
-        s = stops[j];
-        if(s["Stop"] == Tmarker.title) {
-          var minutes = Math.floor(s["Seconds"]/60);
-          var seconds = s["Seconds"] - (minutes * 60);
-          message += '<tr>'+
-                  '<td>'+destination["Destination"]+'</td>'+
-                  '<td>'+minutes+'&#58'+seconds+'</td>'+'</tr>';
-        }
-      }
-    }
-    message += '</table>';
-    console.log("got here");
-    infowindowT.setContent(message);
-    //infowindow.close(); // Close previous window
-    infowindowT.open(map, Tmarker);
   });
 }
 
