@@ -231,7 +231,7 @@ function drawLines() {
 
     message = '<h1>'+Tmarker.title+'</h1>'+
               '<table border="1" style="width:400px">';
-/*
+
     for(i=0;i<scheduleData["schedule"].length;i++) {
       destination = scheduleData["schedule"][i];
       stops = destination["Predictions"];
@@ -251,9 +251,7 @@ function drawLines() {
     infowindow.setContent(message);
     infowindow.close(); // Close previous window
     infowindow.open(map, Tmarker);
-  }
-  */
-  message += '</table>';
+  });
 }
 
 /*
