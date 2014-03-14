@@ -49,7 +49,6 @@
   var shortestDist = 99999;
   var scheduleData;
   
-  var linePath2Red;
   var Tstops;
 
 
@@ -216,7 +215,7 @@ function drawLines() {
       strokeWeight: 2
     }); 
 
-    line2Path.setMap(map);
+    linePath2Red.setMap(map);
   }
 
 }
