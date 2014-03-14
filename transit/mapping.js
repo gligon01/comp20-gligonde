@@ -163,7 +163,7 @@ function drawLines() {
   var linePathCoordinates = new Array();
   var linePath2RedCoordinates;
   k = 0;
-  
+
   for(i=0;i<(Tstops.length - 5);i++) {
     if(scheduleData["line"] == Tstops[i].Line) {
       linePathCoordinates[k] = new google.maps.LatLng(parseFloat(Tstops[i].Lat), parseFloat(Tstops[i].Lng)); 
@@ -200,7 +200,7 @@ function drawLines() {
   }); 
  
   linePath.setMap(map);
-/*
+
   if(scheduleData["line"] == 'red') {
     linePath2Red = new google.maps.Polyline({
       path: linePath2RedCoordinates,
@@ -211,7 +211,7 @@ function drawLines() {
     }); 
     line2Path.setMap(map);
   }
-*/
+
 }
 
 function createMarker(value)
