@@ -139,7 +139,7 @@ function parse() {
       var d = R * c; 
       if(d < shortestDist) {
         shortestDist = d;
-        shortestStat = value.Line;
+        shortestStat = value.Station;
       }
     }
       
@@ -224,7 +224,7 @@ function drawLines() {
   google.maps.event.addListener(marker, 'click', function() {
     var infowindow = new google.maps.InfoWindow();
     var message = 'You are here &#33; The closest station is &#58;'+'</br>'+
-                  shortestStat+'&#58; ' + (shortestDist/1.609) + ' miles';
+                  shortestStat+'&#58; ' + Math.round((shortestDist/1.609)*100)/100) + ' miles';
     infowindow.setContent(message);
     infowindow.open(map, marker);
   });
