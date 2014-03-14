@@ -31,7 +31,7 @@
         });
       }
 */
-
+  var image;
   var map;
   var marker;
   var xhr;
@@ -161,6 +161,18 @@ function drawLines() {
 
   var linePathCoordinates = new Array();
   var linePath2RedCoordinates;
+  
+  if(scheduleData["line"] == 'blue') {
+    color = '0000CC';
+    image = 'blue_img.jpg'
+  } else if(scheduleData["line"] == 'orange') {
+    color = 'FF850A';
+    image = 'orange_img.jpg'
+  } else if(scheduleData["line"] == 'red') {
+    color = 'FF0A0A';
+    image = 'red_img.jpg'
+  } 
+
   k = 0;
 
   for(i=0;i<(Tstops.length - 5);i++) {
@@ -171,6 +183,7 @@ function drawLines() {
       marker = new google.maps.Marker({
           position: dot,
           title: Tstops[i].Station
+          icon:image
         });
         marker.setMap(map);
     }
@@ -184,14 +197,6 @@ function drawLines() {
     new google.maps.LatLng(42.233391, -71.007153),
     new google.maps.LatLng(42.2078543, -71.0011385)
   ];
-
-  if(scheduleData["line"] == 'blue') {
-    color = '0000CC';
-  } else if(scheduleData["line"] == 'orange') {
-    color = 'FF850A';
-  } else if(scheduleData["line"] == 'red') {
-    color = 'FF0A0A';
-  } 
 
   console.log(scheduleData["line"]);
   console.log(color);
