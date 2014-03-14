@@ -199,8 +199,7 @@ function drawLines() {
         }
       }
       messageT += '</table>';
-      console.log("got here");
-      infowindowT.setContent(message);
+      infowindowT.setContent(messageT);
       //infowindow.close(); // Close previous window
       infowindowT.open(map, addMark);
       });
