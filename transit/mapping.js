@@ -149,12 +149,12 @@ function parse() {
         //console.log("calculate");
         //console.log(shortestDist);
       }
-      /*
+      
       location = new google.maps.LatLng(value.Lat, value.Lng);
       var marker = new google.maps.Marker({
           position: location
         });
-    */
+    
     }
   }
 
