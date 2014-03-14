@@ -31,7 +31,7 @@
         });
       }
 */
-  var image;
+  var image = new Image();
   var map;
   var marker;
   var xhr;
@@ -164,13 +164,13 @@ function drawLines() {
   
   if(scheduleData["line"] == 'blue') {
     color = '0000CC';
-    image = 'blue_img.jpg'
+    image.src = "blue_img.jpg";
   } else if(scheduleData["line"] == 'orange') {
     color = 'FF850A';
-    image = 'orange_img.jpg'
+    image.src = "orange_img.jpg";
   } else if(scheduleData["line"] == 'red') {
     color = 'FF0A0A';
-    image = 'red_img.jpg'
+    image.src = "red_img.jpg";
   } 
 
   k = 0;
@@ -180,12 +180,12 @@ function drawLines() {
       linePathCoordinates[k] = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng); 
       k++;
       dot = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng);
-      marker = new google.maps.Marker({
+      var Tmarker = new google.maps.Marker({
           position: dot,
           title: Tstops[i].Station
-          icon:image
+          icon: image
         });
-        marker.setMap(map);
+        Tmarker.setMap(map);
     }
   }
 
