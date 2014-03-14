@@ -43,7 +43,7 @@ function renderMap() {
   me = new google.maps.LatLng(myLat, myLng);
 
   // Update map and go there...
-  map.panTo(me);
+  //map.panTo(me);
 
   // Create a marker
   marker = new google.maps.Marker({
