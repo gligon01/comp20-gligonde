@@ -154,7 +154,7 @@ function parse() {
       var marker = new google.maps.Marker({
           position: location
         });
-    
+      marker.setMap(map);
     }
   }
 
