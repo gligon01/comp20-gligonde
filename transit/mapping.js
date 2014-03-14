@@ -222,12 +222,12 @@ function drawLines() {
                   shortestStat+'&#58; ' + Math.round((shortestDist/1.609)*100)/100 + 
                   ' miles away from your current location';
     infowindow.setContent(message);
-    infowindow.close(); // Close previous window
+    //infowindow.close(); // Close previous window
     infowindow.open(map, marker);
   });
 
   google.maps.event.addListener(Tmarker, 'click', function() {
-    var infowindow = new google.maps.InfoWindow();
+    var infowindowT = new google.maps.InfoWindow();
 
     message = '<h1>'+Tmarker.title+'</h1>'+
               '<table border="1" style="width:400px">';
@@ -247,10 +247,10 @@ function drawLines() {
       }
     }
     message += '</table>';
-
-    infowindow.setContent(message);
-    infowindow.close(); // Close previous window
-    infowindow.open(map, Tmarker);
+    console.log("got here");
+    infowindowT.setContent(message);
+    //infowindow.close(); // Close previous window
+    infowindowT.open(map, Tmarker);
   });
 }
 
