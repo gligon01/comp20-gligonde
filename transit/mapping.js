@@ -182,8 +182,8 @@ function drawLines() {
       dot = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng);
       var Tmarker = new google.maps.Marker({
           position: dot,
-          title: Tstops[i].Station
-          //icon: image
+          title: Tstops[i].Station,
+          icon: image
         });
         Tmarker.setMap(map);
     }
