@@ -251,6 +251,7 @@ function drawLines() {
     infowindow.close(); // Close previous window
     infowindow.open(map, Tmarker);
   }
+  
 }
 
 /*
