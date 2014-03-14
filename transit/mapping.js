@@ -166,8 +166,14 @@ function drawLines() {
 
   for(i=0;i<(Tstops.length - 5);i++) {
     if(scheduleData["line"] == Tstops[i].Line) {
-      linePathCoordinates[k] = new google.maps.LatLng(parseFloat(Tstops[i].Lat), parseFloat(Tstops[i].Lng)); 
+      linePathCoordinates[k] = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng); 
       k++;
+      dot = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng);
+      marker = new google.maps.Marker({
+          position: dot,
+          title: Tstops[i].Station
+        });
+        marker.setMap(map);
     }
   }
 
@@ -202,13 +208,14 @@ function drawLines() {
   linePath.setMap(map);
 
   if(scheduleData["line"] == 'red') {
-    linePath2Red = new google.maps.Polyline({
+    var linePath2Red = new google.maps.Polyline({
       path: linePath2RedCoordinates,
       geodesic: true,
       strokeColor: color,
       strokeOpacity: 1.0,
       strokeWeight: 2
     }); 
+
     line2Path.setMap(map);
   }
 
