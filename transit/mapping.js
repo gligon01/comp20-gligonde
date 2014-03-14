@@ -162,10 +162,12 @@ function drawLines() {
 
   var linePathCoordinates = new Array();
   var linePath2RedCoordinates;
-
+  k = 0;
+  
   for(i=0;i<(Tstops.length - 5);i++) {
     if(scheduleData["line"] == Tstops[i].Line) {
-      linePathCoordinates[i] = new google.maps.LatLng(parseFloat(Tstops[i].Lat), parseFloat(Tstops[i].Lng)); 
+      linePathCoordinates[k] = new google.maps.LatLng(parseFloat(Tstops[i].Lat), parseFloat(Tstops[i].Lng)); 
+      k++;
     }
   }
 
