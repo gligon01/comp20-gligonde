@@ -171,22 +171,21 @@ function drawLines() {
 
   var messageT = '<h1>'+markerT.title+'</h1>'+
           '<table border="1" style="width:400px">'+
-          '<tr>'+'<h2>'+'<td>'+'Line'+'</td>'+'<td>'+'Trip &#35;'+'</td>'+
+          '<tr>'+'<td>'+'<h2>'+'Line'+'</h2>'+'</td>'+
+          '<td>'+'Trip &#35;'+'</td>'+
           '<td>'+'Direction'+'</td>'+'<td>'+'Time Remaining'+'</td>'+
-          '</h2>'+'</tr>';
+          '</tr>';
   for(i=0;i<scheduleData["schedule"].length;i++) {
     destination = scheduleData["schedule"][i];
     stops = destination["Predictions"];
     for(j=0;j<stops.length;j++){
      s = stops[j];
       if(s["Stop"] == markerT.title) {
-        var minutes = Math.floor(s["Seconds"]/60);
-        var seconds = s["Seconds"] - (minutes * 60);
         messageT += '<tr>'+
               '<td>'+scheduleData["line"]+'</td>'+
               '<td>'+destination["TripID"]+'</td>'+
               '<td>'+destination["Destination"]+'</td>'+
-              '<td>'+minutes+'&#58 '+seconds+'</td>'+'</tr>';
+              '<td>'+secondsToHms(s["Seconds"])+'</td>'+'</tr>';
       }
     }
   }
@@ -248,6 +247,14 @@ function drawLines() {
       infowindow.close();
       infowindowT.close();
     });
+}
+
+function secondsToHms(d) {
+  d = Number(d);
+  var h = Math.floor(d / 3600);
+  var m = Math.floor(d % 3600 / 60);
+  var s = Math.floor(d % 3600 % 60);
+  return ((h > 0 ? h + ":" : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + ":" : "0:") + (s < 10 ? "0" : "") + s); 
 }
 
 /*
