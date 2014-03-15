@@ -179,10 +179,12 @@ function drawLines() {
           title: Tstops[i].Station,
           //icon: image
         });
-        google.maps.event.addListener(Tmarkers[k], 'click', function() {
-        TinfoWindows[k] = new google.maps.InfoWindow();
+      Tmarkers[k].setMap(map);
 
-        var messageT = '<h1>'+Tmarkers[k].title+'</h1>'+
+      google.maps.event.addListener(Tmarkers[k], 'click', function() {
+      TinfoWindows[k] = new google.maps.InfoWindow();
+
+      var messageT = '<h1>'+Tmarkers[k].title+'</h1>'+
               '<table border="1" style="width:400px">';
 
       for(i=0;i<scheduleData["schedule"].length;i++) {
