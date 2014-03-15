@@ -198,7 +198,7 @@ function drawLines() {
     infowindowT.open(map, markerT);
     }
   })(markerT, i)); 
-  
+  }
 
   var linePath = new google.maps.Polyline({
     path: linePathCoordinates,
