@@ -122,7 +122,7 @@ function parse() {
 function drawLines() {
 
   var linePathCoordinates = new Array();
-  //var Tmarkers = new Array();
+  
   k = 0;
   
   if(scheduleData["line"] == 'blue') {
@@ -155,15 +155,21 @@ function drawLines() {
     if(scheduleData["line"] == Tstops[i].Line) {
       linePathCoordinates[k] = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng); 
       k++;
+    }
+  }
+  
+  for(i=0;i<(Tstops.length);i++) {
+
       dot = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng);
+
       markerT = new google.maps.Marker({
           position: dot,
           title: Tstops[i].Station,
           icon: img
         });
+
       markerT.setMap(map);
-    }
-    
+
     google.maps.event.addListener(markerT, 'click', (function(markerT) {
     return function() {
 
