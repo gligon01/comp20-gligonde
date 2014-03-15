@@ -211,7 +211,7 @@ function drawLines() {
       new google.maps.LatLng(42.233391, -71.007153),
       new google.maps.LatLng(42.2078543, -71.0011385)
     ];
-    console.log(linePathCoordinates);
+    console.log(linePath2RedCoordinates);
     var linePath2Red = new google.maps.Polyline({
       path: linePath2RedCoordinates,
       geodesic: true,
