@@ -162,19 +162,25 @@ function drawLines() {
     color = '0000CC';
     img = {
       url: 'blue_img.png',
-      size: new google.maps.Size(42, 68)
+      size: new google.maps.Size(20, 32),
+      origin: new google.maps.Point(0,0),
+      anchor: new google.maps.Point(0, 32)
     };
   } else if(scheduleData["line"] == 'orange') {
     color = 'FF850A';
     img = {
       url:'orange_img.png',
-      size: new google.maps.Size(42, 68)
+      size: new google.maps.Size(20, 32),
+      origin: new google.maps.Point(0,0),
+      anchor: new google.maps.Point(0, 32)
     };
   } else if(scheduleData["line"] == 'red') {
     color = 'FF0A0A';
     img = {
       url:'red_img.png',
-      size: new google.maps.Size(42, 68)
+      size: new google.maps.Size(20, 32),
+      origin: new google.maps.Point(0,0),
+      anchor: new google.maps.Point(0, 32)
     };
   } 
 
