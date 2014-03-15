@@ -189,11 +189,12 @@ function drawLines() {
         }
       }
     }
+
+    messageT += '</table>';
+    infowindowT.setContent(messageT);
+    infowindowT.open(map, this);
+    });  
   }
-  messageT += '</table>';
-  infowindowT.setContent(messageT);
-  infowindowT.open(map, this);
-  });  
 
   var linePath = new google.maps.Polyline({
     path: linePathCoordinates,
@@ -257,21 +258,3 @@ function secondsToHms(d) {
   var s = Math.floor(d % 3600 % 60);
   return ((h < 10 ? "0" : "")+ h + ":" + (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s); 
 }
-
-/*
-stop_of_interest = "Davis";
-for(i = 0; i < data["schedule"].lengh; i++) {
-  destination = data["schedule"][i];
-  //Step 2 - get list of stops
-  stops = destination["Predictions"];
-  for (j = 0; j < stops.length; j++) {
-    s = stops[j];
-    if(s == stop_of_interest) {
-      console.log(s["Seconds"]);
-      console.log(destionation["Destination"]);
-    }
-  }
-}
-*/
-
-     
