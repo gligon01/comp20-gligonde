@@ -171,7 +171,7 @@ function drawLines() {
 
   var messageT = '<h1>'+markerT.title+'</h1>'+
           '<table border="1" style="width:400px">'+
-          '<tr>'+'<td>'+'<h2>'+'Line'+'</h2>'+'</td>'+
+          '<tr>'+'<td>'+'<h3>'+'Line'+'</h3>'+'</td>'+
           '<td>'+'Trip &#35;'+'</td>'+
           '<td>'+'Direction'+'</td>'+'<td>'+'Time Remaining'+'</td>'+
           '</tr>';
