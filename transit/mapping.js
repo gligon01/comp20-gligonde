@@ -167,10 +167,6 @@ function drawLines() {
 
       google.maps.event.addListener(markerT, 'click', function() {
 
-
-         console.log(linePathCoordinates);
-
-
       var messageT = '<h1>'+markerT.title+'</h1>'+
               '<table border="1" style="width:400px">';
 
@@ -205,7 +201,7 @@ function drawLines() {
  
   linePath.setMap(map);
 
-  //if(scheduleData["line"] == "red") {
+  if(scheduleData["line"] == "red") {
       var  RedLineRestCoords = [
         new google.maps.LatLng(42.320685, -71.052391),
         new google.maps.LatLng(42.275275, -71.029583),
@@ -214,7 +210,7 @@ function drawLines() {
         new google.maps.LatLng(42.233391, -71.007153),
         new google.maps.LatLng(42.2078543, -71.0011385)
     ];
-    console.log(RedLineRestCoords);
+
     var linePathRed = new google.maps.Polyline({
       path: RedLineRestCoords,
       geodesic: true,
@@ -224,7 +220,16 @@ function drawLines() {
     }); 
 
     linePathRed.setMap(map);
-  //}
+
+    for(i = 1; i < 6; i++) {
+        markerT = new google.maps.Marker({
+          position: RedLineRestCoords[i],
+          title: Tstops[(Tstops.length - 6)+i].Station,
+          icon: img
+        });
+      markerT.setMap(map);
+    }
+  }
 
   //Open info window on click of marker
   google.maps.event.addListener(marker, 'click', function() {
