@@ -170,7 +170,7 @@ function drawStations() {
 
 ///////////// Markers are created and set on the map///////////////////////////
 
-  for(i=0;i<(Tstops.length);i++) {
+  for(i=0;i<Tstops.length;i++) {
     if(scheduleData["line"] == Tstops[i].Line) {
       dot = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng);
       markerT = new google.maps.Marker({
