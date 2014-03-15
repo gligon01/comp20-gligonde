@@ -167,6 +167,10 @@ function drawLines() {
 
       google.maps.event.addListener(markerT, 'click', function() {
 
+
+         console.log(linePathCoordinates);
+
+
       var messageT = '<h1>'+markerT.title+'</h1>'+
               '<table border="1" style="width:400px">';
 
@@ -191,8 +195,6 @@ function drawLines() {
     }
   }
 
-  console.log(linePathCoordinates);
-
   var linePath = new google.maps.Polyline({
     path: linePathCoordinates,
     geodesic: true,
@@ -206,7 +208,6 @@ function drawLines() {
   //if(scheduleData["line"] == "red") {
       var  RedLineRestCoords = [
         new google.maps.LatLng(42.284652, -71.064489),
-        new google.maps.LatLng(37.772323, -122.214897),
         new google.maps.LatLng(42.275275, -71.029583),
         new google.maps.LatLng(42.2665139, -71.0203369),
         new google.maps.LatLng(42.251809, -71.005409),
