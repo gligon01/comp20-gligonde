@@ -268,7 +268,7 @@ function drawLines() {
   });
 
   google.maps.event.addListener(map, 'click', function() {
-      infoWindow.close();
+      infowindow.close();
     });
 }
 
