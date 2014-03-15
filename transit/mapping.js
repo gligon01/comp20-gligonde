@@ -29,8 +29,10 @@ function initialize() {
   xhr.send(null);    
 
   map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-
-  getMyLocation();
+  
+  if(xhr.status == 200) {
+    getMyLocation();
+  }
 }
 
 function dataReady() {
