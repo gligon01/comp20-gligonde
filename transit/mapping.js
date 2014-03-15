@@ -169,7 +169,7 @@ function drawLines() {
 
       var messageT = '<h1>'+Tstops[i].Station+'</h1>'+
               '<table border="1" style="width:400px">'+
-              '<tr>'+'<td>'+'Line'+'</td>'+'</td>'+'Trip &#35;'+'</td>'+
+              '<tr>'+'<td>'+'Line'+'</td>'+'<td>'+'Trip &#35;'+'</td>'+
               '<td>'+'Direction'+'</td>'+'<td>'+'Time Remaining'+'</td>'+
               '</tr>';
       for(i=0;i<scheduleData["schedule"].length;i++) {
