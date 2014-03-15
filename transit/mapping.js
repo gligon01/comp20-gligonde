@@ -121,11 +121,11 @@ function parse() {
 function drawLines() {
 
   var linePathCoordinates = new Array();
+  var linePath2RedCoordinates = new Array();
   var Tmarkers = new Array();
   var TinfoWindows = new Array();
-  k = 0;
-  
 
+  k = 0;
 
   if(scheduleData["line"] == 'blue') {
     color = '0000CC';
@@ -206,7 +206,7 @@ function drawLines() {
 
   //if(scheduleData["line"] == "red") {
   for(i=Tstops.length;i<(Tstops.length - 5);i++) {  
-      var linePath2RedCoordinates[i-Tstops.length] = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng); 
+      linePath2RedCoordinates[(i-Tstops.length)] = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng); 
       dot = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng);
       markerT = new google.maps.Marker({
         position: dot,
@@ -214,7 +214,7 @@ function drawLines() {
         icon: img
       });
       markerT.setMap(map);
-    }
+  }
 
     console.log(linePath2RedCoordinates);
     var linePath2Red = new google.maps.Polyline({
