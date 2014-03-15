@@ -166,8 +166,11 @@ function drawLines() {
       markerT.setMap(map);
     }
 
-    google.maps.event.addListener(markerT, 'click', function() {
+    Tmarkers.push(markerT);
 
+    google.maps.event.addListener(markerT, 'click', (function(markerT, i) 
+    {
+    return function() {
     var messageT = '<h1>'+markerT.title+'</h1>'+
             '<table border="1" style="width:300px">'+
             '<tr>'+'<td>'+'<b>'+'Line'+'</b>'+'</td>'+
@@ -192,9 +195,10 @@ function drawLines() {
 
     messageT += '</table>';
     infowindowT.setContent(messageT);
-    infowindowT.open(map, this);
-    });  
-  }
+    infowindowT.open(map, markerT);
+    }
+  })(markerT, i)); 
+  
 
   var linePath = new google.maps.Polyline({
     path: linePathCoordinates,
