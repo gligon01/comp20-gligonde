@@ -269,19 +269,9 @@ function drawStations() {
     }); 
 
     linePathRed.setMap(map);
-
-/*Might get rid of that last bit of code
-    for(i = 1; i < 6; i++) {
-        markerT = new google.maps.Marker({
-          position: RedLineRestCoords[i],
-          title: Tstops[(Tstops.length - 6)+i].Station,
-          icon: img
-        });
-      markerT.setMap(map);
-    }
   }
 }
-*/
+
 // Convert seconds to HH:MM:SS (hours:minutes:seconds)
 function secondsToHms(d) {
   d = Number(d);
