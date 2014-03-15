@@ -176,8 +176,8 @@ function drawLines() {
             '<td>'+'<b>'+'Direction'+'</b>'+'</td>'+'<td>'+
             '<b>'+'Time Remaining'+'</b>'+'</td>'+
             '</tr>';
-    for(i=0;i<scheduleData["schedule"].length;i++) {
-      destination = scheduleData["schedule"][i];
+    for(p=0;p<scheduleData["schedule"].length;p++) {
+      destination = scheduleData["schedule"][p];
       stops = destination["Predictions"];
       for(j=0;j<stops.length;j++){
        s = stops[j];
