@@ -266,6 +266,10 @@ function drawLines() {
     //infowindow.close(); // Close previous window
     infowindow.open(map, marker);
   });
+
+  google.maps.event.addListener(map, 'click', function() {
+      infoWindow.close();
+    });
 }
 
 /*
