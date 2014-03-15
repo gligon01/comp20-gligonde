@@ -18,6 +18,7 @@
   var infowindow = new google.maps.InfoWindow();
   var infowindowT = new google.maps.InfoWindow();
   var Tstops;
+  var markerT;
 
 
 
