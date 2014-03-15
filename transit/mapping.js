@@ -49,6 +49,7 @@
   var shortestStat;
   var scheduleData;
   var infowindow = new google.maps.InfoWindow();
+  var infowindowT = new google.maps.InfoWindow();
   var Tstops;
 
 
