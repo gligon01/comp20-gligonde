@@ -122,12 +122,9 @@ function parse() {
 function drawLines() {
 
   var linePathCoordinates = new Array();
-  var Tmarkers = new Array();
-  var TinfoWindows = new Array();
+  //var Tmarkers = new Array();
   k = 0;
   
-
-
   if(scheduleData["line"] == 'blue') {
     color = '0000CC';
     img = {
@@ -167,12 +164,12 @@ function drawLines() {
       markerT.setMap(map);
     }
 
-    Tmarkers.push(markerT);
+    //Tmarkers.push(markerT);
 
     google.maps.event.addListener(markerT, 'click', (function(markerT, i) 
     {
     return function() {
-    var messageT = '<h1>'+Tmarkers[i].title+'</h1>'+
+    var messageT = '<h1>'+Tstops[i].Station+'</h1>'+
             '<table border="1" style="width:300px">'+
             '<tr>'+'<td>'+'<b>'+'Line'+'</b>'+'</td>'+
             '<td>'+'<b>'+'Trip &#35;'+'</b>'+'</td>'+
@@ -184,7 +181,7 @@ function drawLines() {
       stops = destination["Predictions"];
       for(j=0;j<stops.length;j++){
        s = stops[j];
-        if(s["Stop"] == Tmarkers[i].title) {
+        if(s["Stop"] == Tstops[i].Station) {
           messageT += '<tr>'+
                 '<td>'+scheduleData["line"]+'</td>'+
                 '<td>'+destination["TripID"]+'</td>'+
