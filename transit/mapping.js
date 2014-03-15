@@ -37,6 +37,7 @@ function dataReady() {
      scheduleData = JSON.parse(xhr.responseText);
   }
   else if (xhr.readyState == 4 && xhr.status == 500) {
+    // There was an error while retrieving data
     alert("An error occurred while retrieving the MBTA schedule");
   }
 }
