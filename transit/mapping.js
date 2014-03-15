@@ -164,34 +164,36 @@ function drawLines() {
           icon: img
         });
       markerT.setMap(map);
-
-      google.maps.event.addListener(markerT, 'click', function() {
-
-      var messageT = '<h1>'+Tstops[i].Station+'</h1>'+
-              '<table border="1" style="width:400px">'+
-              '<tr>'+'<td>'+'Line'+'</td>'+'<td>'+'Trip &#35;'+'</td>'+
-              '<td>'+'Direction'+'</td>'+'<td>'+'Time Remaining'+'</td>'+
-              '</tr>';
-      for(i=0;i<scheduleData["schedule"].length;i++) {
-        destination = scheduleData["schedule"][i];
-        stops = destination["Predictions"];
-        for(j=0;j<stops.length;j++){
-         s = stops[j];
-          if(s["Stop"] == markerT.title) {
-            var minutes = Math.floor(s["Seconds"]/60);
-            var seconds = s["Seconds"] - (minutes * 60);
-            messageT += '<tr>'+
-                  '<td>'+destination["Destination"]+'</td>'+
-                  '<td>'+minutes+'&#58'+seconds+'</td>'+'</tr>';
-          }
-        }
-      }
-      messageT += '</table>';
-      infowindowT.setContent(messageT);
-      infowindowT.open(map, this);
-      });
     }
   }
+  
+  google.maps.event.addListener(markerT, 'click', function() {
+
+  var messageT = '<h1>'+markerT.title+'</h1>'+
+          '<table border="1" style="width:400px">'+
+          '<tr>'+'<td>'+'Line'+'</td>'+'<td>'+'Trip &#35;'+'</td>'+
+          '<td>'+'Direction'+'</td>'+'<td>'+'Time Remaining'+'</td>'+
+          '</tr>';
+  for(i=0;i<scheduleData["schedule"].length;i++) {
+    destination = scheduleData["schedule"][i];
+    stops = destination["Predictions"];
+    for(j=0;j<stops.length;j++){
+     s = stops[j];
+      if(s["Stop"] == markerT.title) {
+        var minutes = Math.floor(s["Seconds"]/60);
+        var seconds = s["Seconds"] - (minutes * 60);
+        messageT += '<tr>'+
+              '<td>'+scheduleData["line"]+'</td>'+
+              '<td>'+destination["TripID"]+'</td>'+
+              '<td>'+destination["Destination"]+'</td>'+
+              '<td>'+minutes+'&#58'+seconds+'</td>'+'</tr>';
+      }
+    }
+  }
+  messageT += '</table>';
+  infowindowT.setContent(messageT);
+  infowindowT.open(map, this);
+  });  
 
   var linePath = new google.maps.Polyline({
     path: linePathCoordinates,
