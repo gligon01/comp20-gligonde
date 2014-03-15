@@ -200,7 +200,7 @@ function drawLines() {
       google.maps.event.addListener(markerT, 'click', function() {
       infowindowT = new google.maps.InfoWindow();
 
-      var messageT = '<h1>'+Tmarkers[k].title+'</h1>'+
+      var messageT = '<h1>'+markerT.title+'</h1>'+
               '<table border="1" style="width:400px">';
 
       for(i=0;i<scheduleData["schedule"].length;i++) {
@@ -208,7 +208,7 @@ function drawLines() {
         stops = destination["Predictions"];
         for(j=0;j<stops.length;j++){
          s = stops[j];
-          if(s["Stop"] == Tmarkers[k].title) {
+          if(s["Stop"] == markerT.title) {
             var minutes = Math.floor(s["Seconds"]/60);
             var seconds = s["Seconds"] - (minutes * 60);
             messageT += '<tr>'+
