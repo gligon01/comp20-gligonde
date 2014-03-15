@@ -100,7 +100,7 @@ function renderMap() {
     position: me,
     title: "You are here!"
   });
-  //marker.setMap(map);
+  marker.setMap(map);
   
   parse();
 }
@@ -190,15 +190,15 @@ function drawLines() {
       linePathCoordinates[k] = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng); 
       k++;
       dot = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng);
-      Tmarkers[k] = new google.maps.Marker({
+      marker = new google.maps.Marker({
           position: dot,
           title: Tstops[i].Station,
           icon: img
         });
-      Tmarkers[k].setMap(map);
+      marker.setMap(map);
 
-      google.maps.event.addListener(Tmarkers[k], 'click', function() {
-      TinfoWindows[k] = new google.maps.InfoWindow();
+      google.maps.event.addListener(marker, 'click', function() {
+      infowindow = new google.maps.InfoWindow();
 
       var messageT = '<h1>'+Tmarkers[k].title+'</h1>'+
               '<table border="1" style="width:400px">';
@@ -218,9 +218,9 @@ function drawLines() {
         }
       }
       messageT += '</table>';
-      TinfoWindows[k].setContent(messageT);
+      infowindow.setContent(messageT);
       //TinfoWindows[k].close(); // Close previous window
-      TinfoWindows[k].open(map, Tmarkers[k]);
+      infowindow.open(map, this);
       });
     }
   }
