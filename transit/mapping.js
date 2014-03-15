@@ -270,7 +270,7 @@ function drawStations() {
 
     linePathRed.setMap(map);
 
-// Might get rid of that last bit of code
+/*Might get rid of that last bit of code
     for(i = 1; i < 6; i++) {
         markerT = new google.maps.Marker({
           position: RedLineRestCoords[i],
@@ -281,7 +281,7 @@ function drawStations() {
     }
   }
 }
-
+*/
 // Convert seconds to HH:MM:SS (hours:minutes:seconds)
 function secondsToHms(d) {
   d = Number(d);

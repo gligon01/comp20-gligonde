@@ -20,15 +20,8 @@ destination direction, for each station on the line.
 alert window pops up informing the user that data could not be retrieved
 and that the service is unavailable
 
-B) (Possible) Aspects that have not been correctly implemented
--By inspecting the parse() function of the mapping.js file, the data from the
-MBTA schedule will only be processed in the event that the data was retrieved
-successfully, hence the condition "if(xhr.status == 200)"; however on some rare
-instances the program would bypass that condition and an error would be reported.
-Since the last time the code was changed to further avoid this event from 
-occuring, the error has not resurfaced (but it happened rarely so there's no
-guarantee that the changes serve their purpose).
--None
+B) Aspects that have not been correctly implemented
+-None that I can think of
 
 2 - Individuals with whom I have discussed the assignment:
 	Nana Kwakwa, Seye Bankole, Obaid Farooqui 
