@@ -3,9 +3,9 @@ Assignment 3: MBTA Map and Schedule Rodeo
 
 1 - Program Performance
 
-A) Aspects that have been correctly implemented
+A) Aspects that have been correctly implemented:
 -Google Map of given MBTA subway line renders successfully
--A custom icon (which is simply a small section of a png file) was used to 
+-Custom icons (which are simply small sections of png files) were used to 
 to mark stations on the Red, Orange, and Blue lines
 -A colored polyline (based on subway line) connects all of the stations of 
 associated with the color of the polyline
@@ -18,7 +18,6 @@ the name of the station, and a table containing subway arrival schedule,
 destination direction, for each station on the line.
 -In the event that the MBTA schedule cannot be processed (500 status), an
 alert window pops up informing the user that data could not be retrieved
-and that the service is unavailable
 
 B) Aspects that have not been correctly implemented
 -None that I can think of
@@ -28,5 +27,3 @@ B) Aspects that have not been correctly implemented
 
 3 - Total number of hours spent on assignment:
 	A little over 30 (approximately)
-
-

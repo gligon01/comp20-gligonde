@@ -13,7 +13,7 @@
       };    
   var shortestDist = 99999;   // Shortest distance
   var shortestStat;           // Name of nearest station
-  var scheduleData;     // MBTA Schedule
+  var scheduleData;           // MBTA Schedule
   var infowindow = new google.maps.InfoWindow();
   var infowindowT = new google.maps.InfoWindow();
   var Tstops;                 // Subway stations info/coordinates
@@ -201,7 +201,7 @@ function drawStations() {
         // Find the predictions of arrival times of each station
           for(j=0;j<stops.length;j++){
            s = stops[j];
-        // If the selected station matches the current marker's station
+        // If the current station matches the current marker's station
         // information is added to the table
             if(s["Stop"] == markerT.title) {
               messageT += '<tr>'+
@@ -230,7 +230,7 @@ function drawStations() {
     infowindow.open(map, marker);
   });
 
-//////////////////////Close a info box ////////////////////////////////////////
+//////////////////////Close info box //////////////////////////////////////////
   google.maps.event.addListener(map, 'click', function() {
       infowindow.close();
       infowindowT.close();
