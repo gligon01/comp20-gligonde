@@ -1,36 +1,3 @@
-/*
-  function init()
-      {
-        // Faneuil Hall
-        var landmark = new google.maps.LatLng(42.3599611, -71.0567528);
-
-        // Set up map
-        var myOptions = {
-          zoom: 13, // The larger the zoom number, the bigger the zoom
-          center: landmark,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        // Create the map in the "map_canvas" <div>
-        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-
-        // Create a marker        
-        var marker = new google.maps.Marker({
-          position: landmark,
-          title: "Faneuil Hall, Boston, MA"
-        });
-        marker.setMap(map);
-
-        // This is a global info window...
-        var infowindow = new google.maps.InfoWindow();
-
-        // Open info window on click of marker
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(marker.title);
-          infowindow.open(map, marker);
-        });
-      }
-*/
   var map;
   var marker;
   var xhr;
@@ -153,7 +120,6 @@ function parse() {
 function drawLines() {
 
   var linePathCoordinates = new Array();
-  var linePath2RedCoordinates;
   var Tmarkers = new Array();
   var TinfoWindows = new Array();
   k = 0;
@@ -236,7 +202,7 @@ function drawLines() {
   linePath.setMap(map);
 
   if(scheduleData["line"] == "red") {
-      linePath2RedCoordinates = [
+      var  linePath2RedCoordinates = [
       new google.maps.LatLng(42.284652, -71.064489),
       new google.maps.LatLng(42.275275, -71.029583),
       new google.maps.LatLng(42.2665139, -71.0203369),
@@ -244,7 +210,7 @@ function drawLines() {
       new google.maps.LatLng(42.233391, -71.007153),
       new google.maps.LatLng(42.2078543, -71.0011385)
     ];
-    console.log("here1");
+    console.log(linePathCoordinates);
     var linePath2Red = new google.maps.Polyline({
       path: linePath2RedCoordinates,
       geodesic: true,
@@ -262,7 +228,6 @@ function drawLines() {
                   shortestStat+'&#58; ' + Math.round((shortestDist/1.609)*100)/100 + 
                   ' miles away from your current location';
     infowindow.setContent(message);
-    //infowindow.close(); // Close previous window
     infowindow.open(map, marker);
   });
 
