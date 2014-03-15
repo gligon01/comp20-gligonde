@@ -169,6 +169,7 @@ function drawLines() {
     google.maps.event.addListener(markerT, 'click', (function(markerT, i) 
     {
     return function() {
+      console.log(i);
     var messageT = '<h1>'+Tstops[i].Station+'</h1>'+
             '<table border="1" style="width:300px">'+
             '<tr>'+'<td>'+'<b>'+'Line'+'</b>'+'</td>'+
