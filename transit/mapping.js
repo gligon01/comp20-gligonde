@@ -207,7 +207,7 @@ function drawLines() {
 
   //if(scheduleData["line"] == "red") {
       var  RedLineRestCoords = [
-        new google.maps.LatLng(42.284652, -71.064489),
+        new google.maps.LatLng(42.320685, -71.052391),
         new google.maps.LatLng(42.275275, -71.029583),
         new google.maps.LatLng(42.2665139, -71.0203369),
         new google.maps.LatLng(42.251809, -71.005409),
