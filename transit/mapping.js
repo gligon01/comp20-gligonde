@@ -163,14 +163,11 @@ function drawLines() {
         });
       markerT.setMap(map);
     }
-
-    //Tmarkers.push(markerT);
-
-    google.maps.event.addListener(markerT, 'click', (function(markerT, i) 
-    {
+    
+    google.maps.event.addListener(markerT, 'click', (function(markerT) {
     return function() {
-      
-    var messageT = '<h1>'+Tstops[i].Station+'</h1>'+
+
+    var messageT = '<h1>'+markerT.title+'</h1>'+
             '<table border="1" style="width:300px">'+
             '<tr>'+'<td>'+'<b>'+'Line'+'</b>'+'</td>'+
             '<td>'+'<b>'+'Trip &#35;'+'</b>'+'</td>'+
@@ -182,7 +179,7 @@ function drawLines() {
       stops = destination["Predictions"];
       for(j=0;j<stops.length;j++){
        s = stops[j];
-        if(s["Stop"] == Tstops[i].Station) {
+        if(s["Stop"] == markerT.title) {
           messageT += '<tr>'+
                 '<td>'+scheduleData["line"]+'</td>'+
                 '<td>'+destination["TripID"]+'</td>'+
@@ -192,11 +189,11 @@ function drawLines() {
       }
     }
 
-    messageT += '</table>';
-    infowindowT.setContent(messageT);
-    infowindowT.open(map, markerT);
-    }
-  })(markerT, i)); 
+      messageT += '</table>';
+      infowindowT.setContent(messageT);
+      infowindowT.open(map, markerT);
+      };
+    })(markerT)); 
   }
 
   var linePath = new google.maps.Polyline({
