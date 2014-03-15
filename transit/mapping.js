@@ -31,7 +31,6 @@
         });
       }
 */
-  var img = new Image();
   var map;
   var marker;
   var xhr;
@@ -160,13 +159,13 @@ function drawLines() {
   
   if(scheduleData["line"] == 'blue') {
     color = '0000CC';
-    img.src = "blue_img.jpg";
+    img = 'blue_img.jpg';
   } else if(scheduleData["line"] == 'orange') {
     color = 'FF850A';
-    img.src = "orange_img.jpg";
+    img = 'orange_img.jpg';
   } else if(scheduleData["line"] == 'red') {
     color = 'FF0A0A';
-    img.src = "red_img.jpg";
+    img = 'red_img.jpg';
   } 
 
   for(i=0;i<(Tstops.length - 5);i++) {
