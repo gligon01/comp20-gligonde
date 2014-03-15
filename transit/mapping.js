@@ -154,6 +154,8 @@ function drawLines() {
 
   var linePathCoordinates = new Array();
   var linePath2RedCoordinates;
+  var Tmarkers = new Array();
+  var TinfoWindows = new Array();
   k = 0;
   
   if(scheduleData["line"] == 'blue') {
@@ -172,16 +174,15 @@ function drawLines() {
       linePathCoordinates[k] = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng); 
       k++;
       dot = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng);
-      var addMark = new google.maps.Marker({
+      Tmarkers[k] = new google.maps.Marker({
           position: dot,
           title: Tstops[i].Station,
           //icon: image
         });
-        addMark.setMap(map);
-        google.maps.event.addListener(addMark, 'click', function() {
-        var infowindowT = new google.maps.InfoWindow();
+        google.maps.event.addListener(Tmarkers[k], 'click', function() {
+        TinfoWindows[k] = new google.maps.InfoWindow();
 
-        var messageT = '<h1>'+addMark.title+'</h1>'+
+        var messageT = '<h1>'+Tmarkers[k].title+'</h1>'+
               '<table border="1" style="width:400px">';
 
       for(i=0;i<scheduleData["schedule"].length;i++) {
@@ -189,7 +190,7 @@ function drawLines() {
         stops = destination["Predictions"];
         for(j=0;j<stops.length;j++){
          s = stops[j];
-          if(s["Stop"] == addMark.title) {
+          if(s["Stop"] == Tmarkers[k].title) {
             var minutes = Math.floor(s["Seconds"]/60);
             var seconds = s["Seconds"] - (minutes * 60);
             messageT += '<tr>'+
@@ -199,9 +200,9 @@ function drawLines() {
         }
       }
       messageT += '</table>';
-      infowindowT.setContent(messageT);
-      //infowindow.close(); // Close previous window
-      infowindowT.open(map, addMark);
+      TinfoWindows[k].setContent(messageT);
+      //TinfoWindows[k].close(); // Close previous window
+      TinfoWindows[k].open(map, Tmarkers[k]);
       });
     }
   }
