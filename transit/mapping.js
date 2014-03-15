@@ -172,7 +172,7 @@ function drawLines() {
     google.maps.event.addListener(markerT, 'click', (function(markerT, i) 
     {
     return function() {
-    var messageT = '<h1>'+markerT.title+'</h1>'+
+    var messageT = '<h1>'+Tmarkers[i].title+'</h1>'+
             '<table border="1" style="width:300px">'+
             '<tr>'+'<td>'+'<b>'+'Line'+'</b>'+'</td>'+
             '<td>'+'<b>'+'Trip &#35;'+'</b>'+'</td>'+
@@ -184,7 +184,7 @@ function drawLines() {
       stops = destination["Predictions"];
       for(j=0;j<stops.length;j++){
        s = stops[j];
-        if(s["Stop"] == markerT.title) {
+        if(s["Stop"] == Tmarkers[i].title) {
           messageT += '<tr>'+
                 '<td>'+scheduleData["line"]+'</td>'+
                 '<td>'+destination["TripID"]+'</td>'+
