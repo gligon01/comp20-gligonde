@@ -186,11 +186,12 @@ function drawLines() {
       }
       messageT += '</table>';
       infowindowT.setContent(messageT);
-      //TinfoWindows[k].close(); // Close previous window
       infowindowT.open(map, this);
       });
     }
   }
+
+  console.log(linePathCoordinates);
 
   var linePath = new google.maps.Polyline({
     path: linePathCoordinates,
@@ -203,17 +204,18 @@ function drawLines() {
   linePath.setMap(map);
 
   //if(scheduleData["line"] == "red") {
-      var  linePathRedCoordinates = [
+      var  RedLineRestCoords = [
         new google.maps.LatLng(42.284652, -71.064489),
+        new google.maps.LatLng(37.772323, -122.214897),
         new google.maps.LatLng(42.275275, -71.029583),
         new google.maps.LatLng(42.2665139, -71.0203369),
         new google.maps.LatLng(42.251809, -71.005409),
         new google.maps.LatLng(42.233391, -71.007153),
         new google.maps.LatLng(42.2078543, -71.0011385)
     ];
-    console.log(linePathRedCoordinates);
+    console.log(RedLineRestCoords);
     var linePathRed = new google.maps.Polyline({
-      path: linePathRedCoordinates,
+      path: RedLineRestCoords,
       geodesic: true,
       strokeColor: color,
       strokeOpacity: 1.0,
