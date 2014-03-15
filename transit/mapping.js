@@ -158,13 +158,14 @@ function drawLines() {
   k = 0;
   
 
+
   if(scheduleData["line"] == 'blue') {
     color = '0000CC';
     img = {
       url: 'blue_img.png',
       size: new google.maps.Size(25, 25),
       origin: new google.maps.Point(0,0),
-      anchor: new google.maps.Point(800,600)
+      anchor: new google.maps.Point(0,25 )
     };
   } else if(scheduleData["line"] == 'orange') {
     color = 'FF850A';
@@ -172,7 +173,7 @@ function drawLines() {
       url:'orange_img.png',
       size: new google.maps.Size(25, 25),
       origin: new google.maps.Point(0,0),
-      anchor: new google.maps.Point(800,600)
+      anchor: new google.maps.Point(0,25)
     };
   } else if(scheduleData["line"] == 'red') {
     color = 'FF0A0A';
@@ -180,7 +181,7 @@ function drawLines() {
       url:'red_img.png',
       size: new google.maps.Size(25, 25),
       origin: new google.maps.Point(0,0),
-      anchor: new google.maps.Point(800,600)
+      anchor: new google.maps.Point(0,25)
     };
   } 
 
