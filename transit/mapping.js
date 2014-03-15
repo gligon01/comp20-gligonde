@@ -165,28 +165,28 @@ function drawLines() {
         });
       markerT.setMap(map);
     }
-  }
 
-  google.maps.event.addListener(markerT, 'click', function() {
+    google.maps.event.addListener(markerT, 'click', function() {
 
-  var messageT = '<h1>'+markerT.title+'</h1>'+
-          '<table border="1" style="width:300px">'+
-          '<tr>'+'<td>'+'<b>'+'Line'+'</b>'+'</td>'+
-          '<td>'+'<b>'+'Trip &#35;'+'</b>'+'</td>'+
-          '<td>'+'<b>'+'Direction'+'</b>'+'</td>'+'<td>'+
-          '<b>'+'Time Remaining'+'</b>'+'</td>'+
-          '</tr>';
-  for(i=0;i<scheduleData["schedule"].length;i++) {
-    destination = scheduleData["schedule"][i];
-    stops = destination["Predictions"];
-    for(j=0;j<stops.length;j++){
-     s = stops[j];
-      if(s["Stop"] == markerT.title) {
-        messageT += '<tr>'+
-              '<td>'+scheduleData["line"]+'</td>'+
-              '<td>'+destination["TripID"]+'</td>'+
-              '<td>'+destination["Destination"]+'</td>'+
-              '<td>'+secondsToHms(s["Seconds"])+'</td>'+'</tr>';
+    var messageT = '<h1>'+markerT.title+'</h1>'+
+            '<table border="1" style="width:300px">'+
+            '<tr>'+'<td>'+'<b>'+'Line'+'</b>'+'</td>'+
+            '<td>'+'<b>'+'Trip &#35;'+'</b>'+'</td>'+
+            '<td>'+'<b>'+'Direction'+'</b>'+'</td>'+'<td>'+
+            '<b>'+'Time Remaining'+'</b>'+'</td>'+
+            '</tr>';
+    for(i=0;i<scheduleData["schedule"].length;i++) {
+      destination = scheduleData["schedule"][i];
+      stops = destination["Predictions"];
+      for(j=0;j<stops.length;j++){
+       s = stops[j];
+        if(s["Stop"] == markerT.title) {
+          messageT += '<tr>'+
+                '<td>'+scheduleData["line"]+'</td>'+
+                '<td>'+destination["TripID"]+'</td>'+
+                '<td>'+destination["Destination"]+'</td>'+
+                '<td>'+secondsToHms(s["Seconds"])+'</td>'+'</tr>';
+        }
       }
     }
   }
