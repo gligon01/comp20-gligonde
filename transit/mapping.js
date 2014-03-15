@@ -98,9 +98,9 @@ function renderMap() {
   // Create a marker
   marker = new google.maps.Marker({
     position: me,
-    title: "Here I Am! Let's do this!"
+    title: "You are here!"
   });
-  marker.setMap(map);
+  //marker.setMap(map);
   
   parse();
 }
@@ -225,15 +225,6 @@ function drawLines() {
     }
   }
 
-  linePath2RedCoordinates = [
-    new google.maps.LatLng(42.284652, -71.064489),
-    new google.maps.LatLng(42.275275, -71.029583),
-    new google.maps.LatLng(42.2665139, -71.0203369),
-    new google.maps.LatLng(42.251809, -71.005409),
-    new google.maps.LatLng(42.233391, -71.007153),
-    new google.maps.LatLng(42.2078543, -71.0011385)
-  ];
-
   var linePath = new google.maps.Polyline({
     path: linePathCoordinates,
     geodesic: true,
@@ -244,7 +235,16 @@ function drawLines() {
  
   linePath.setMap(map);
 
-  if(scheduleData["line"] == 'red') {
+  if(scheduleData["line"] == "red") {
+      linePath2RedCoordinates = [
+      new google.maps.LatLng(42.284652, -71.064489),
+      new google.maps.LatLng(42.275275, -71.029583),
+      new google.maps.LatLng(42.2665139, -71.0203369),
+      new google.maps.LatLng(42.251809, -71.005409),
+      new google.maps.LatLng(42.233391, -71.007153),
+      new google.maps.LatLng(42.2078543, -71.0011385)
+    ];
+    console.log("here1");
     var linePath2Red = new google.maps.Polyline({
       path: linePath2RedCoordinates,
       geodesic: true,
