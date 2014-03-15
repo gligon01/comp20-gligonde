@@ -202,15 +202,15 @@ function drawLines() {
  
   linePath.setMap(map);
 
-  if(scheduleData["line"] == "red") {
-      var  linePath2RedCoordinates = [
-      new google.maps.LatLng(42.284652, -71.064489),
-      new google.maps.LatLng(42.275275, -71.029583),
-      new google.maps.LatLng(42.2665139, -71.0203369),
-      new google.maps.LatLng(42.251809, -71.005409),
-      new google.maps.LatLng(42.233391, -71.007153),
-      new google.maps.LatLng(42.2078543, -71.0011385)
-    ];
+  //if(scheduleData["line"] == "red") {
+      var  linePath2RedCoordinates = new Array(
+        new google.maps.LatLng(42.284652, -71.064489),
+        new google.maps.LatLng(42.275275, -71.029583),
+        new google.maps.LatLng(42.2665139, -71.0203369),
+        new google.maps.LatLng(42.251809, -71.005409),
+        new google.maps.LatLng(42.233391, -71.007153),
+        new google.maps.LatLng(42.2078543, -71.0011385)
+    );
     console.log(linePath2RedCoordinates);
     var linePath2Red = new google.maps.Polyline({
       path: linePath2RedCoordinates,
@@ -221,7 +221,7 @@ function drawLines() {
     }); 
 
     linePath2Red.setMap(map);
-  }
+  //}
 
   //Open info window on click of marker
   google.maps.event.addListener(marker, 'click', function() {
