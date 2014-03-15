@@ -158,24 +158,30 @@ function drawLines() {
   k = 0;
   
 
-  var img = {
-    path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
-    fillColor: 'yellow',
-    fillOpacity: 0.8,
-    scale: 0.25,
-    strokeColor: 'gold',
-    strokeWeight: 14
-  };
-
   if(scheduleData["line"] == 'blue') {
     color = '0000CC';
-    
+    img = {
+      url: 'blue_img.png',
+      size: new google.maps.Size(25, 25),
+      origin: new google.maps.Point(0,0),
+      anchor: new google.maps.Point(800,600)
+    };
   } else if(scheduleData["line"] == 'orange') {
     color = 'FF850A';
-    
+    img = {
+      url:'orange_img.png',
+      size: new google.maps.Size(25, 25),
+      origin: new google.maps.Point(0,0),
+      anchor: new google.maps.Point(800,600)
+    };
   } else if(scheduleData["line"] == 'red') {
     color = 'FF0A0A';
-  
+    img = {
+      url:'red_img.png',
+      size: new google.maps.Size(25, 25),
+      origin: new google.maps.Point(0,0),
+      anchor: new google.maps.Point(800,600)
+    };
   } 
 
   for(i=0;i<(Tstops.length - 5);i++) {
