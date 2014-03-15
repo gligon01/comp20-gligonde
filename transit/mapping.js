@@ -158,24 +158,24 @@ function drawLines() {
   k = 0;
   
 
-  var img = {
-    // This marker is 20 pixels wide by 32 pixels tall.
-    size: new google.maps.Size(5, 8)
-    // The origin for this image is 0,0.
-    //origin: new google.maps.Point(0,0),
-    // The anchor for this image is the base of the flagpole at 0,32.
-    //anchor: new google.maps.Point(0, 32)
-  };
-
   if(scheduleData["line"] == 'blue') {
     color = '0000CC';
-    img = {url: 'blue_img.png'};
+    img = {
+      url: 'blue_img.png',
+      size: new google.maps.Size(42, 68)
+    };
   } else if(scheduleData["line"] == 'orange') {
     color = 'FF850A';
-    img = {url:'orange_img.png'};
+    img = {
+      url:'orange_img.png',
+      size: new google.maps.Size(42, 68)
+    };
   } else if(scheduleData["line"] == 'red') {
     color = 'FF0A0A';
-    img = {url:'red_img.png'};
+    img = {
+      url:'red_img.png',
+      size: new google.maps.Size(42, 68)
+    };
   } 
 
   for(i=0;i<(Tstops.length - 5);i++) {
