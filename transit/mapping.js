@@ -206,7 +206,7 @@ function drawLines() {
 
   //if(scheduleData["line"] == "red") {
   for(i=Tstops.length;i<(Tstops.length - 5);i++) {  
-      linePath2RedCoordinates[i-Tstops.length] = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng); 
+      var linePath2RedCoordinates[i-Tstops.length] = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng); 
       dot = new google.maps.LatLng(Tstops[i].Lat, Tstops[i].Lng);
       markerT = new google.maps.Marker({
         position: dot,
@@ -215,7 +215,7 @@ function drawLines() {
       });
       markerT.setMap(map);
     }
-    
+
     console.log(linePath2RedCoordinates);
     var linePath2Red = new google.maps.Polyline({
       path: linePath2RedCoordinates,
