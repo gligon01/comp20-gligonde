@@ -202,7 +202,7 @@ function drawLines() {
  
   linePath.setMap(map);
 
-  if(scheduleData["line"] == "red") {
+  //if(scheduleData["line"] == "red") {
       var  linePathRedCoordinates = [
         new google.maps.LatLng(42.284652, -71.064489),
         new google.maps.LatLng(42.275275, -71.029583),
@@ -221,7 +221,7 @@ function drawLines() {
     }); 
 
     linePathRed.setMap(map);
-  }
+  //}
 
   //Open info window on click of marker
   google.maps.event.addListener(marker, 'click', function() {
