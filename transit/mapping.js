@@ -267,6 +267,7 @@ function drawLines() {
 
   google.maps.event.addListener(map, 'click', function() {
       infowindow.close();
+      infowindowT.close();
     });
 }
 
