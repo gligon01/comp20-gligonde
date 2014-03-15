@@ -48,7 +48,7 @@
   var shortestDist = 99999;
   var shortestStat;
   var scheduleData;
-  
+  var infowindow = new google.maps.InfoWindow();
   var Tstops;
 
 
@@ -198,7 +198,6 @@ function drawLines() {
       markerT.setMap(map);
 
       google.maps.event.addListener(markerT, 'click', function() {
-      infowindowT = new google.maps.InfoWindow();
 
       var messageT = '<h1>'+markerT.title+'</h1>'+
               '<table border="1" style="width:400px">';
@@ -258,7 +257,6 @@ function drawLines() {
 
   //Open info window on click of marker
   google.maps.event.addListener(marker, 'click', function() {
-    var infowindow = new google.maps.InfoWindow();
     var message = 'You are here &#33; The closest station is &#58;'+'</br>'+
                   shortestStat+'&#58; ' + Math.round((shortestDist/1.609)*100)/100 + 
                   ' miles away from your current location';
