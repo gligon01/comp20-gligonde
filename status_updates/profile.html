@@ -8,24 +8,42 @@
 <script>
 function newsFeed()
 {
-	var node=document.createElement("p");
 	var currentTime = new Date();
-	var textnode=document.createTextNode(
+
+	if(currentTime.getMinutes() < 10) {
+		minutes = "0" + currentTime.getMinutes();
+	} else {
+		minutes = currentTime.getMinutes();
+	}
+	var textnode=
 		(currentTime.getMonth()+1) + "/" +
 		currentTime.getDate() + "/" +
 		currentTime.getFullYear() + " " +
 		currentTime.getHours() + ":" +
-		currentTime.getMinutes() + " - " +
-		document.getElementById("msg").value);
-	node.appendChild(textnode);
-	document.getElementById("status").appendChild(node);
+		minutes + " - " +
+		document.getElementById("msg").value;
 	document.getElementById("msg").value='';
+	localStorage[new Date().getTime()] = textnode;
+	reload();
 }
+
+function reload()
+{
+	elem = document.getElementById("status");
+	elem.innerHTML = "";
+	for (key in localStorage) {
+		var node = document.createElement("p");
+		post = document.createTextNode(localStorage[key]);
+		node.appendChild(post);
+		elem.insertBefore(node, elem.firstChild);
+	}
+}
+
 </script>
 <title>Fecesbook</title>
 </head>
 
-<body>
+<body onload="reload()">
 	<h1>Fecebook</h1>
 	<div id="nav">
 		<ul>
