@@ -10,3 +10,5 @@ http://stackoverflow.com/questions/10211145/getting-current-date-and-time-in-jav
 
 2. status_updates: Lab 5. There is only one file in the folder. The main purpose of the lab was to dynamically change the content of a webpage. After the user inputs a message in a text box, it is displayed under the "Updates" section of the webpage along with the time and date at which the message was submitted. Lab must be completed using only Javascript.
 
+Date: 4/10/14
+2048-gamecenter: Has 2018 game
