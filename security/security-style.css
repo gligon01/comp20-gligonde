@@ -1,0 +1,52 @@
+body {
+	font-family: "Book Antiqua";
+	text-align: left;
+	margin-top:50px;
+	margin-bottom:100px;
+	margin-right:50px;
+	margin-left:50px;
+	font-size: 14px;
+}
+
+h1 {
+	font-family: "Palatino Linotype";
+	font-size: 24px;
+  	border-bottom: 1px solid #cccccc;
+  	color: black;
+}
+
+h2 {
+	font-family: "Palatino Linotype";
+	font-size: 24px;
+  	color: black;
+}
+
+a {
+	color: red;
+	font-weight: bold;
+}
+
+b {
+	font-weight: bold;
+}
+
+i {
+	font-size: 16px;
+	font-style: italic;
+}
+
+
+code {
+	margin: 0 2px;
+	padding: 0 5px;
+	border: 1px solid #eaeaea;
+	background-color: #f8f8f8;
+	border-radius: 3px;
+}
+
+.line-separator {
+	height:1px;
+	background:#717171;
+	border-bottom:1px solid #313030;
+}
+
