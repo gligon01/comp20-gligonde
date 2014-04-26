@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8"> 
+		<link rel="stylesheet" type="text/css" href="security-style.css">
+		<title> Gamecenter Security Assessment </title>
+	</head>
+
+	<body>
+
+		<h2>Security Assessment of 2048 Gamecenter</h2>
+
+		<p>Prepared by Gardy Kevin Ligonde - 4/25/2014</p>
+
+		<h1>Introduction</h1>
+
+		<p>
+			2048 is a game that has recently gained a lot of popularity. The objective is to reach the 2048
+			tile by adding similar numbers. After winning the game, it's possisble to continue, thus reaching 
+			even higher tiles, and ultimately a higher high score. My client, @aaly, 
+			had to create a web application that would serve as a gamecenter for the 2048 game. 
+			This web application mainly consists of three API's designed to post and retrieve high scores. 
+			Although the app is fully functional, it is vulnerable to attacks that would result in 
+			unexpected behavior if not taken care of, or ultimately, make it practically useless. This report
+			will enumerate some of the security flaws that were encountered in the application and how they 
+			can be taken be resolved to avoid possible future attacks. This, in brief, a security assessment
+			 of @aaly's 2048 gamecenter.
+		</p>
+		 	
+		<h1>Methodology</h1>
+
+		<p>
+			The procedure can be divided into two major components. For the first phase, "black-box" testing was
+			carried out. To elaborate a little more, it involves making use of the tools that are immediately
+			available to anyone that wishes to interact with the application. In other words, I exploited the API's
+			that I was given and examined how the app would behave if I were to give it unusual data. The second phase
+			involved "white-box" testing. After experimenting with the API's as much as I could, I examined the source code
+			of the application and searched for other potential security flaws that were not immediately apparent. It is
+			worth noting that all testig was done on @aaly's heroku app.</p>
+
+		<h1>Abstract of Findings</h1>
+
+		<p>
+			A common theme in the vulnerabilities that were found revolve around the application's expectation
+			that the user will submit valid data. This is a major security issue as the app is putting its trust
+			in any random external source out there. For instance, if inappropriate data were submitted, 
+			(i.e. links rather than actual usernames) then accessing the application could automatically redirect
+			to a different website. Another issue is if the amount of submissions isn't monitored then the 
+			application could potentially run out of room for more entries. </p>
+
+		<h1>Issues Found</h1>
+
+			1. <i>Cross-Site Scripting</i><br/>
+			<ul>
+				<li>Affects GET API</li>
+				<li>
+					<a>High</a>: This is an issue that could potentially render the app practically inoperable.
+					The current POST API only accepts any user input and adds it to the database without actually
+					verifying the content.
+				</li>
+				<li>
+					The <code>/submit.json</code> API that was set up easily accepts JavaScript and HTML tags in place of actual usernames and scores. 
+					For instance, after running the command: <code>curl --data "username=&lt;iframe src='http://cat-bounce.com/'&gt;&lt;/iframe&gt;&#38;score=9001&#38;grid=irrelevantstuff" http://rocky-shelf-5496.herokuapp.com/submit.json</code>
+					on Terminal, an actual webpage was rendered in the place of the username. It is also evident that a 
+					<code>&lt;script&gt;</code> tag could have been added that could potentially redirect any user trying to access
+					 the app to another web page. In the end, it would have been practically impossible to view anything on the 
+					 page because of a script tag burried in the app's database.<br/>
+					<img src="cat-score.png" alt="CatBounce"><br/>
+					It even allowed me to insert a negative high score which is nonsensical. 
+					<img src="bad-score.png" alt="BadScore"><br/>
+				</li>
+				<li>
+					This is a situation that could be resolved by examining user input for special characters such as:
+					<code>&lt;,&gt;,/,&#38;,*,$,;</code>. There are functions that could be implemented to search for these 
+					characters in the user input and either get rid of them or just refuse to add them to the database. 
+				</li>
+			</ul>
+			2. <i>Cross-Origin-Resource-Sharing</i><br/>
+			<ul>
+				<li>Affects Application Database</li>
+				<li>
+					<a>High</a>: After inspecting the code behind @aaly's web application, it was observed that Cross-Origin-Resource-Sharing was enabled. Below is a snippet of his code for closer examination.<br/> 
+					<img src="cors.png" alt="CatBounce"> <br/>
+					By examining the picture, an important line of code stands out. By writing 
+					<code>res.header("Access-Control-Allow-Origin", "*");</code>
+					the app is practically considered completely public content intended to be accessible by anyone, including any code on
+					any site. This is generally not appropriate as the application is very exposed and has no restriction on what any random
+					user could do with it. And even if the application were to have certain security measures in place, wouldn't it be better
+					to play it safe by knowing who has access to your API's? 
+				</li>
+				<li>
+					There are two possible solutions to this problem. One would involve restricting user submissions unless an appropriate API 
+					key is also submitted. This would significantly reduce the risk of an attack as only trusted users 
+					that were given valid API keys would be allowed more freedom. Another solution would
+					be to actually list the sources (users) that are allowed to interact with the API. For example:
+					<code>Access-Control-Allow-Origin: http://www.iReallyTrustThisSource.com</code>
+				</li>
+			</ul>
+			3. <i>No Restriction On Submission Count</i><br/>
+			<ul>
+				<li>Affects Application Database</li>
+				<li>
+					<a>High</a>: By inspection, it is obvious that the POST API only does one job, which is to grab data and insert it 
+					in the database. While it is true that databases are meant to hold millions of records, what happens when the app
+					is being hosted on a website with limited space for submissions? What happens if the user tries to submit more
+					entries while there isn't any room left? Well, it's likely that the application will crash. For example,
+					a user could set up an infinite loop and make multiple POST requests that would just get added to the database until there is no longer any room left.
+				</li>
+				<li>
+					In order to prevent this from happening, it would be useful to set an actual cap on the amount of records in the
+					database. For instance, every user would be allowed a certain amount of records. Consequently, when a user fills
+					up all of his alloted space, he will only be allowed to make more submissions in the event that he beats his
+					previous high scores. When there's no longer any room left, the app would simply refuse
+					more submissions, thus preventing it from crashing.
+				</li>
+				<li>
+					<b>Sidenote</b>: I did not want to crash his heroku app, which is why I don't have an image.
+				</li>
+			</ul>
+
+		<h1>Conclusion</h1>
+
+		<p>
+			The issues that are listed above are just some of the major security vulnerabilities that need to be taken care of. In order to better prepare for other potential attacks, it'd be better to restructure the API in such a manner that it has no faith in user input being correct. In other words, before making a submission, there would have to be multiple checks that would simply try to find something wrong in the data. This would definitely significantly 
+			reduce the likelyhood of simple attacks being successful in misusing the application. For simple payments ranging from $300-$450, it'd be possible to make the app even more secure as every submission would be thoroughly investigated in order to make sure that the user is really trustworthy.
+		</p>
+
+	</body>
+
+</html>
