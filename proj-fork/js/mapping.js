@@ -63,7 +63,10 @@ function showLocation() {
           });
         }
     });
-    window.location.href = "main.html";
+}
+
+function GetMain() {
+  window.location.href = "main.html";
 }
 
   google.maps.event.addDomListener(window, "load", initialize);
