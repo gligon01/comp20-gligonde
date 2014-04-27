@@ -6,6 +6,19 @@ function GetSite()
   window.location.href = "main.html";
 }
 
+function initializeMain()
+{
+  lat = 42.360024;
+  lng = -71.060168;
+  //getMyLocation();
+
+    var mapOptions = {
+          center: new google.maps.LatLng(lat, lng),
+          zoom: 15
+        };
+    map = new google.maps.Map(document.getElementById("map_canvas"),
+          mapOptions);
+}
 /*
 function getMyLocation() {
     //lat = -99999;
@@ -26,18 +39,6 @@ function getMyLocation() {
 }
 */
 function initialize() {
-  /*
-    lat = 42.360024;
-    lng = -71.060168;
-   // getMyLocation();
-
-    var mapOptions = {
-          center: new google.maps.LatLng(lat, lng),
-          zoom: 15
-        };
-    map = new google.maps.Map(document.getElementById("map_canvas"),
-          mapOptions);
-  */
     geocoder = new GClientGeocoder();
     gDir = new GDirections();
     GEvent.addListener(gDir, "load", function() {
