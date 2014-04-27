@@ -3,7 +3,7 @@ var geocoder, location1, location2, gDir;
 
 function GetSite() 
 {
-  window.location.href = "/main.html";
+  window.location.href = "main.html";
 }
 
 /*
