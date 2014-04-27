@@ -65,7 +65,7 @@ function showLocation() {
     });
 }
 
-function GetMain() {
+function GetSite() {
   window.location.href = "main.html";
 }
 
