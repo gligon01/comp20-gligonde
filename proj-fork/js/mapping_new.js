@@ -129,4 +129,9 @@ function showMap() {
 }
 
 
+// For redirecting purposes
+
+function GetMain() {
+  window.location.href = 'main.html';
+}
 
