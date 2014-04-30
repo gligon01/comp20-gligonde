@@ -91,10 +91,8 @@
 
 <script src="account-script.js"></script> 
 
-<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
-
 <script>
-		addEventListener('load', prettyPrint, false);
+		addEventListener('load', function (event) { prettyPrint() }, false);
 		$(document).ready(function(){
 		$('pre').addClass('prettyprint linenums');
 			});
