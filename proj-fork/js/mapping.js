@@ -18,7 +18,7 @@ function initializeMain()
 
 function GetSiteMain() {
   console.log('made the call');
-  window.location.href = "/main.html";
+ location.href= "main.html";
 }
 
 function initialize() {
