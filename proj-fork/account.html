@@ -18,7 +18,7 @@
   <div class="span6 offset6">
     <div id="maincontent" class="span8"> 
       
-      <form id="registration-form" class="form-horizontal">
+      <form id="registration-form" class="form-horizontal" action="/" method="post" enctype="text/plain">
        
           <h2>Please fill every field before clicking Register</h2>
           <br/>
@@ -72,8 +72,8 @@
           </div>
           
           <div class="form-actions">
-            <button type="submit" class="btn btn-success btn-large">Register</button>
-            <button type="reset" class="btn">Cancel</button>
+            <button type="submit" class="btn btn-success btn-large" onclick = "window.location.href='main.html'" >Register</button>
+            <button type="reset" class="btn" onclick = "window.location.href='main.html'">Cancel</button>
           </div>
   
       </form>
