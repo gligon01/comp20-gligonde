@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,follow" />
+    <script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAA7j_Q-rshuWkc8HyFI4V2HxQYPm-xtd00hTQOC0OXpAMO40FHAxT29dNBGfxqMPq5zwdeiDSHEPL89A" type="text/javascript"></script>
+    <title>Home Page for MinGoBile</title>
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="page.css" rel="stylesheet">
+    <script src="mapping.js"> </script>
+  </head>
+
+  <body onload = "initialize()">
+    <form class="route" role="form" onsubmit="showLocation(); return false;">
+      <h2 class="header">Enter thy routes</h2>
+      <input type="From" class="form-control" placeholder="Leaving From" id = "address1" required autofocus>
+      <input type="To" class="form-control" placeholder="Arriving At" id = "address2" required>
+      <label class="checkbox">
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+      <input type = "submit" value = "Go"> </input>
+      <!-- <button class="btn btn-primary btn-block btn-sm" type="submit" onclick = "GetSite()">Go</button> -->
+      
+    </form>
+    <div id="results">OK</div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>
+
+<!-- next part is getting everyone's data in and redirecting to the google maps page -->
