@@ -132,6 +132,7 @@ function showMap() {
 // For redirecting purposes
 
 function GetMain() {
+  console.log('we made it');
   window.location.href = 'main.html';
 }
 
