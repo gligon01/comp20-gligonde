@@ -172,7 +172,7 @@ app.get('/usertrips.json', function (req, res){
   });
 });
 
-app.get('/validlogin.json', function (req, res){
+app.get('/validlogin', function (req, res){
 
     db.collection('mingoes', function(err, col){
     var name = req.query.username;
@@ -181,10 +181,10 @@ app.get('/validlogin.json', function (req, res){
 
       col.count({"username":name, "password":hash}, function (err, r){
           if(r == 1) {
-            res.send("{'exists':'true'}");
+            res.send('http://tuftsdev.github.io/comp20-gligonde/proj-fork/signin.html');
           }
           else {
-            res.send("{'exists':'false'}");
+            res.redirect('http://tuftsdev.github.io/comp20-gligonde/proj-fork/account.html');
           }
       });
   });
