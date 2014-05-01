@@ -1,0 +1,30 @@
+{
+  "name": "comp20-s2014-team10",
+  "version": "0.0.0",
+  "description": "Mingoes, Your Passport to Cheap Transport!",
+  "main": "webapp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/obaidf/comp20-s2014-team10.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/obaidf/comp20-s2014-team10/issues"
+  },
+  "homepage": "https://github.com/obaidf/comp20-s2014-team10",
+  "dependencies": {
+    "logfmt": "~1.1.2",
+    "express": "~3.5.1",
+    "mongo": "~0.1.0",
+    "routes": "~1.1.0",
+    "mongodb": "~1.4.2",
+    "curl": "~0.1.4",
+    "crypto": "0.0.3",
+    "cheerio": "~0.15.0",
+    "request": "~2.34.0"
+  }
+}

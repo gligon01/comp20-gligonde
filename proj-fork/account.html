@@ -18,7 +18,7 @@
   <div class="span6 offset6">
     <div id="maincontent" class="span8"> 
       
-      <form id="registration-form" class="form-horizontal" action="/" method="post" enctype="text/plain">
+      <form id="registration-form" class="form-horizontal" action="http://glacial-brook-9115.herokuapp.com/new_account" method="post" enctype="application/x-www-form-urlencoded">
        
           <h2>Please fill every field before clicking Register</h2>
           <br/>
@@ -47,7 +47,7 @@
           <div class="form-control-group">
             <label class="control-label" for="name"> Retype Password</label>
             <div class="controls">
-              <input type="password" class="input-xlarge" name="confirm_password" id="confirm_password">
+              <input type="password" class="input-xlarge" name="repassword" id="repassword">
             </div>
           </div>
           
@@ -60,7 +60,7 @@
           <div class="form-control-group">
             <label class="control-label" for="message">Your Address</label>
             <div class="controls">
-              <textarea class="input-xlarge" name="address" id="address" rows="3"></textarea>
+              <textarea class="input-xlarge" name="home_address" id="home_address" rows="3"></textarea>
             </div>
           </div>
           
@@ -72,7 +72,7 @@
           </div>
           
           <div class="form-actions">
-            <button type="submit" class="btn btn-success btn-large" onclick = "window.location.href='main.html'" >Register</button>
+            <button type="submit" class="btn btn-success btn-large" >Register</button>
             <button type="reset" class="btn" onclick = "window.location.href='main.html'">Cancel</button>
           </div>
   

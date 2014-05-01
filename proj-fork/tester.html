@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+
+function makeCall() {
+
+ /* var stuff = {"name":"saif", "username":"saif101", "home_address":"private", "password":"abc123", "repassword":"abc123", "email":"s"};
+
+    //$.post("http://localhost:3000/new_account", stuff); 
+    $.post("http://glacial-brook-9115.herokuapp.com/new_account", stuff);*/
+
+  var newtrip = {"username":"saif101", "origin":"jplicks", "dest":"halligan", "mode":"car", "cost":7};
+    $.post("http://glacial-brook-9115.herokuapp.com/new_trip", newtrip); 
+
+}
+
+</script>
+</head>
+<body onload="makeCall()">
+  <h1>testing posts</h1>
+</body>
+</html>

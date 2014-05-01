@@ -2,34 +2,47 @@
  * Module dependencies.
  */
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
+//var routes = require('./routes');
+//var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var mongo = require('mongodb');
 var app = express();
+var crypto = require('crypto');
+
+var request = require('request');  // for screen scraping
+var cheerio = require('cheerio');  // for screen scraping
 
 var mongoUri = process.env.MONGOLAB_URI ||
   process.env.MONGOHQ_URL ||
   'mongodb://localhost/local';
 
+var db = mongo.Db.connect(mongoUri, function (error, databaseConnection) {
+  db = databaseConnection
+});
 
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-app.use(express.favicon());
-app.use(express.logger('dev'));
+//app.set('view engine', 'jade');
+
+
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'comp20-s2014-team10')));
+
+app.use('/static', express.static(__dirname + '/public'));
+
+/*app.use("/styles",  express.static(__dirname + '/stylesheets'));
+app.use("/scripts", express.static(__dirname + '/javascripts'));
+app.use("/images",  express.static(__dirname + '/images'));
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
-}
+} */
 
 
 //Cross Origin Resource Sharing
@@ -42,87 +55,145 @@ app.all('/', function(req, res, next) {
 
 //THIS SHOULD RETRIEVE OUR FRONT PAGE
 app.get('/', function (req, res){
- // res.header("Access-Control-Allow-Origin", "*");
- // res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  mongo.Db.connect(mongoUri, function (err, db){
-    db.collection("scores", function (er, col){
-	var d = col.find().sort({score: -1}).toArray(function(err,scoreData){
-	var indexPage = ""
-        indexPage += "!DOCTYE html><html><head><title>2043 Scores</title>" +    
-                     "<head><body><table><tr><th>Score</th><th>Username</th><th>Grid</th></tr>"
-	if (!err){
-          for(var count = 0; count < scoreData.length; count++){
-	    indexPage += "<tr><td>" + scoreData[count].score + "</td><td>" + scoreData[count].username + "</td><td>" + scoreData[count].grid + "</td></tr>";
-	  }
-	  indexPage +="</table></body></html>";
-	  res.send(indexPage);
-	}
-	else {
-	  res.send("There was an error processing your request");
-	}
-      });
-    });
-  });
+
+    res.redirect('http://tuftsdev.github.io/comp20-gligonde/proj-fork/main.html');
+    //res.sendfile('' + './public/index.html');
+
+   //res.send("yay!");
 });
 
-//get user data 
-app.get('/users.json', function (req, res){
+app.post('/new_account', function (req, res){
   res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    mongo.Db.connect(mongoUri, function (err, db){
-      db.collection("users", function (er, col){
-          var username = req.query.username;            
-          var d = col.find({"username":user}).toArray(function(err,userData){
-            res.send(userData);
-          });
-      });
-    });
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
+      if (req.body.password === req.body.repassword) {
+
+        db.collection('mingoes', function(err, collection) {
+          var name = req.body.name; 
+      var username = req.body.username;
+      var email = req.body.email;
+      var password = req.body.password;
+      var repassword = req.body.repassword; 
+      var home_address = req.body.address;
+      
+         var hash = crypto.createHash('md5').update(password).digest("hex");
+
+          collection.insert({"name":name, "email": email, "username": username, "password": hash, "home_address": home_address, "total":0}, function (err, r){});
+         res.send("cool beans");
+      }); 
+    }
+     
+    else {
+      res.send("Retype your password again!");
+    }
+
+    //db.mingoes.insert({"username":"bushra", "password":"yay", "trips":[{"origin":"home", "dest":"school"},{"origin":"school", "dest":"store"}]});
 });
 
-//get data on routes
-app.get('/routes.json', function (req, res){
-  //res.header("Access-Control-Allow-Origin", "*");
-  //res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  mongo.Db.connect(mongoUri, function (err, db){
-    db.collection("routes", function (er, col){
-      var route = req.query.route;
-      var originLat = route.originLat;
-      var originLng = route.originLng;
-      var destinationLat = route.destinationLat;
-      var destinationLng = route.destinationLng;
-      var d = col.find({"originLat":originLat,"originLng":originLng,
-          "destinationLat":destinationLat,"destinationLng":destinationLng}).toArray(function(err,routeData){
-        res.send(routeData);
-      });
-    });
-  });
-});
-
-app.post('/submitroutes.json', function (req, res){
-  //res.header("Access-Control-Allow-Origin", "*");
-  //res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  mongo.Db.connect(mongoUri, function (err, db){
-    db.collection("routes", function (er, collection){
+app.post('/new_trip', function (req, res){
+ 
       var username = req.body.username;
       var origin = req.body.origin;
-      var destination = req.body.destination;
-      var cost = req.body.cost;
-      //var comments = req.body.comments;
+      var dest = req.body.dest;
+      var cost = Number(req.body.cost);
+      var mode = req.body.mode;
 
-      var tStamp = new Date();
-	if(username != null){ //IMPROVE VALIDATION LATER
-      collection.insert({"username":username, "origin":origin, "destination":destination,
-                         "cost":cost, "created_at":tStamp}, function (err, r){
-         res.send("Yeah, I got it. Be cool man.");
-	});
- 	} else {
-	  res.send("You are missing some data, Jim.")
-	}
+  db.collection('trips', function(err, collection) {
+      if (username) {
+        var created_at = Date.now();
+        collection.insert({"username": username, "origin":origin, "dest":dest, "cost":cost, "mode":mode, "timestamp":created_at}, function (err, r){});
+      }
+  });
+
+  db.collection('mingoes', function(err, collection) {
+     
+      collection.count({"username":username}, function (err, r){
+          if(r > 0) {
+            collection.update({"username":username},{$inc: {"total":cost}}, function (err, r){});
+          }
+      });
+  });
+});
+
+app.get('/userexists.json', function (req, res){
+
+    db.collection('mingoes', function(err, col){
+    var name = req.query.username;
+
+      col.count({"username":name}, function (err, r){
+          if(r > 0) {
+            res.send("{'exists':'true'}");
+          }
+          else {
+            res.send("{'exists':'false'}");
+          }
+      });
+  });
+});
+
+app.get('/userdata.json', function (req, res){
+
+    db.collection('mingoes', function(err, col){
+    var name = req.query.username;
+
+      col.count({"username":name}, function (err, r){
+          if(r > 0) {
+            col.find({"username": name}).sort({"timestamp" : -1}).toArray(function(err,x){
+              if (err) {
+                res.send("Error");
+              }
+              else {
+                res.send(x);
+              }
+              });
+          }
+          else {
+            res.send("[]");
+          }
+    
+      });
+  });
+});
+
+app.get('/usertrips.json', function (req, res){
+
+    db.collection('trips', function(err, col){
+    var name = req.query.username;
+
+    col.find({"username": name}).sort({"timestamp" : -1}).toArray(function(err,x){
+
+        if (err) {
+                res.send("Error");
+              }
+              else {
+                res.send(x);
+              }
     });
   });
 });
 
+app.get('/validlogin.json', function (req, res){
+
+    db.collection('mingoes', function(err, col){
+    var name = req.query.username;
+    var password = req.query.password;
+    var hash = crypto.createHash('md5').update(password).digest("hex");
+
+      col.count({"username":name, "password":hash}, function (err, r){
+          if(r == 1) {
+            res.send("{'exists':'true'}");
+          }
+          else {
+            res.send("{'exists':'false'}");
+          }
+      });
+  });
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+ //db.mingoes.update({"username":"bushra"},{$push: {"trips":{"origin":"tufts", "dest":"harvard"}}});
+

@@ -1,0 +1,67 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script> 
+<!-- Car Queryapi-->
+    <script type="text/javascript" src="http://www.carqueryapi.com/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.3.js"></script>
+    <!-- //http://www.carqueryapi.com/ -->
+    
+<script type="text/javascript">
+
+function getCarData(make, model,year){
+  var id
+   $.ajax({
+                //url: "http://utek.skule.ca/programming/car.json",
+                url: "http://www.carqueryapi.com/api/0.3/?callback=?&cmd=getTrims&" + 
+                "sold_in_us=1" + "&make" + make + "&model=" + model + "&year=" + year,
+            //    url: "http://devapi.mygasfeed.com/stations/radius/" + latitude + "/" + longitude + "/" +"50/reg/Distance/rfej9napna.json?callback=?",
+                dataType: "json",
+                success: function(data) {
+                    //alert("Success");       
+                    console.log(data);    
+                    if(data){
+                       id = data.Trims[0]["model id"];
+                    }
+                },
+                error:function(){
+                    alert("Error");
+                },
+        });
+   getModelData(id);
+}
+function getModelData(model_id){
+   $.ajax({
+                //url: "http://utek.skule.ca/programming/car.json",
+                url: "http:www.carqueryapi.com/api/0.3/?callback=?&cmd=getModel&model=" + model_id,
+            //    url: "http://devapi.mygasfeed.com/stations/radius/" + latitude + "/" + longitude + "/" +"50/reg/Distance/rfej9napna.json?callback=?",
+                dataType: "json",
+                success: function(data) {
+                    //alert("Success");       
+                    console.log(data);    
+                
+                },
+                error:function(){
+                    alert("Error");
+                },
+        });
+}
+
+
+    window.onload = function() {
+        //START: CALL THIS FUNCTION TO FIND CLOSEST STATION
+        getCarData("toyota", "Corolla", "2012");
+        //getModelData("51635");
+        //END
+    }
+</script>
+    </head>
+    <body>
+        
+    <div id="1">
+            "Hello World!"
+    </div>
+    </body>
+    </html>

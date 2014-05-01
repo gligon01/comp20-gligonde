@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Not Working Echo Client</title>
+    <meta charset="UTF-8" />
+    <script>
+        
+        function jsonp(url) {
+            var head = document.head;
+            var script = document.createElement("script");
+
+            script.setAttribute("src", url);
+            head.appendChild(script);
+            head.removeChild(script);
+        }
+
+        function jsonpCallback(data) {
+           document.getElementById("response").textContent = JSON.stringify(data);
+        }
+
+        function makeCall(oLat, oLon, dLat, dLon) {
+            var oLat = parseFloat(oLat);
+            var oLon = parseFloat(oLon);
+            var dLat = parseFloat(dLat);
+            var dLon = parseFloat(dLon);
+
+            csCall = "http://api.taxifarefinder.com/fare?key=mUnes8afrE3a&entity_handle=Boston&origin=" + oLat + "," + oLon + "&destination=" + dLat + "," + dLon + "&callback=jsonpCallback";
+        }
+
+        var csCall;
+        makeCall(-42, 71, -42, 71.5); //random values for testing
+        jsonp(csCall);
+  </script>
+</head>
+<body>
+  <span id="response"></span>
+</body>
+</html>

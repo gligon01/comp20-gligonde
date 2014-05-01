@@ -1,0 +1,82 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script> 
+
+	<script type="text/javascript" src="http://www.carqueryapi.com/js/jquery.min.js"></script>
+	<script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.3.js"></script>
+	
+    <script>
+
+    var gasCost;
+    function closestStation(latitude, longitude) {
+    	
+    	var milesPerGallon = 30;
+    	var lowestTotalCost = -1;
+    	var lowestIndex = 0;
+    	var lowestGasPrice = Number.MAX_VALUE;
+    	var lowestDistance = Number.MAX_VALUE;
+	    $.ajax({
+	    			url: "http://devapi.mygasfeed.com/stations/radius/" + latitude + "/" + longitude + "/" +"50/reg/Distance/rfej9napna.json?callback=?",
+	                dataType: "json",
+	                success: function(data) {
+	        		 	console.log(data);    
+	        		 	lowestGasPrice = data.stations[0].price;// Added by NANA fix later in cas price is N/A
+	        		 	for (var index = 0; index < data.stations.length; index++)  {
+	        		 			var milesToStation = parseFloat(data.stations[index].distance.replace(" miles", ""));
+	        		 			var priceOfGas = parseFloat(data.stations[index].price);
+	        		 			if (data.stations[index].price == "N/A") { 
+	        		 				continue;
+	        		 			} else {
+									if (data.stations[index].price < lowestGasPrice){
+											lowestDistance = milesToStation;
+											lowestGasPrice = data.stations[index].price;
+	        		 						lowestIndex = index;
+	        		 				} else if (data.stations[index].price = lowestGasPrice){
+										if(data.stations[index].distance < lowestDistance){
+											lowestDistance = milesToStation;
+											lowestGasPrice = data.stations[index].price;
+	        		 						lowestIndex = index;
+	        		 					}
+	        		 				}
+	        		 			}
+	        		 	} 
+	        		 			gasCost = data.stations[lowestIndex].price;
+	        		 			console.log("The nearest optimal station is " + data.stations[lowestIndex].address);
+	        		 			console.log("with cost of " + parseFloat(data.stations[lowestIndex].price) + " per gallon of gas and distance of " + data.stations[lowestIndex].distance + ".");
+	        		 			calculateGasCost(gasCost, milesPerGallon, lowestDistance);		 	
+                    },
+	                error:function(){
+	        		 	alert("Error");
+	 		    	},
+	        });
+    }
+
+
+ 	function extractDistance(routes){
+ 		var distance = routes.legs.distance.text;
+ 		var duration = routes.legs.distance.value;
+ 		return distance;
+ 	}
+
+ 	function calculateGasCost(cost, mpg, distance){
+ 		thing = cost*(distance/mpg);
+ 		console.log("cost to get to the station is " + thing);
+ 		return cost*(distance/mpg); 
+ 	}
+
+    window.onload = function() {
+    	closestStation(45, -73);
+    }
+
+    </script>
+    </head>
+    <body>
+        
+    <div id="1">
+            "Hello World!"
+    </div>
+    </body>
+    </html>

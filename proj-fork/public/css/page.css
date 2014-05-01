@@ -1,0 +1,59 @@
+ html, body{
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+#map-canvas {
+  height: 100%;
+  width: 50%;
+  margin: 0px;
+  padding: 0px;
+  position: right;
+  float:left;
+}
+#results{
+  height:100%;
+  width:45%;
+  float:left;
+}
+ .route {
+   max-width: 330px;
+   padding: 15px;
+   height:40%;
+   width: 50%;
+   margin: 0 auto;
+ }
+ .route .header,
+ .route .checkbox {
+   margin-bottom: 10px;
+ }
+ .route .checkbox {
+   font-weight: normal;
+ }
+ .route .form-control {
+   position: relative;
+   height: auto;
+   -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+           box-sizing: border-box;
+   padding: 10px;
+   font-size: 16px;
+ }
+ .route .form-control:focus {
+   z-index: 2;
+ }
+ .route input[type="From"] {
+   margin-bottom: -1px;
+   border-bottom-right-radius: 0;
+   border-bottom-left-radius: 0;
+ }
+ .route input[type="To"] {
+   margin-bottom: 10px;
+   border-top-left-radius: 0;
+   border-top-right-radius: 0;
+ }
+ #alldivs1 #alldivs2 .container .container-fluid #map_canvas{
+  height: 0%;
+  width: 0%;
+}

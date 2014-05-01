@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script Content-Type: application/javascript>
+
+
+/////////////////////////       The following script runs great with hard coded numbers, not so much with variables.. Take it out to see the makeCall in action.
+
+<script type="text/javascript" src="http://api.taxifarefinder.com/fare?key=mUnes8afrE3a&entity_handle=Boston&origin=42.410242,-71.119730&destination=42.396410,-71.122323&callback=myCallback"> </script> 
+
+
+function makeCall() {
+
+console.log("hehe");
+var aolat = 42.410242;
+            var aolon = -71.119730;
+            var adlat = 42.396410;
+            var adlon = -71.122323; 
+
+            var olat = parseFloat(aolat);
+            var olon = parseFloat(aolon);
+            var dlat = parseFloat(adlat);
+            var dlon = parseFloat(adlon);
+
+   func = "<script type='text/javascript' src=http://api.taxifarefinder.com/fare?key=mUnes8afrE3a&entity_handle=Boston&origin=" + aolat + "," + aolon + "&destination=" + adlat + "," + adlon + "&callback=" + myCallback + ">" + "</sc"+"ript>";
+
+   console.log("yo");
+   console.log(func);
+
+}
+
+  function myCallback(data) {
+  console.log(data.total_fare);
+  }
+
+
+
+</script>
+</head>
+<body onload="makeCall()">
+</body>
+</html>
