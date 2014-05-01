@@ -356,4 +356,8 @@ function GetOut() {
   window.location.href = 'main.html';
 }
 
+function GetProfile() {
+  window.location.href = 'profile.html';
+}
 
+ 
