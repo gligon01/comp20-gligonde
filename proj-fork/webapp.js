@@ -79,12 +79,12 @@ app.post('/new_account', function (req, res){
          var hash = crypto.createHash('md5').update(password).digest("hex");
 
           collection.insert({"name":name, "email": email, "username": username, "password": hash, "home_address": home_address, "total":0}, function (err, r){});
-         res.send("cool beans");
+         res.redirect('http://tuftsdev.github.io/comp20-gligonde/proj-fork/main.html');
       }); 
     }
      
     else {
-      res.send("Retype your password again!");
+      res.redirect('http://tuftsdev.github.io/comp20-gligonde/proj-fork/account.html');
     }
 
     //db.mingoes.insert({"username":"bushra", "password":"yay", "trips":[{"origin":"home", "dest":"school"},{"origin":"school", "dest":"store"}]});
