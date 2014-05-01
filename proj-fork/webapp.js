@@ -181,10 +181,10 @@ app.get('/validlogin', function (req, res){
 
       col.count({"username":name, "password":hash}, function (err, r){
           if(r == 1) {
-            res.send('http://tuftsdev.github.io/comp20-gligonde/proj-fork/signin.html');
+            res.send('http://tuftsdev.github.io/comp20-gligonde/proj-fork/main.html');
           }
           else {
-            res.redirect('http://tuftsdev.github.io/comp20-gligonde/proj-fork/account.html');
+            res.redirect('http://tuftsdev.github.io/comp20-gligonde/proj-fork/signin.html');
           }
       });
   });
