@@ -334,3 +334,21 @@ function sendEmail() {
                    "Welcome to MINGOES",
                    "Thanks for registering with Mingoes...your passport to cheap transport");
 }
+
+function GetMain() {
+  window.location.href = 'main.html';
+}
+
+function GetSign(username) {
+  if(localStorage['username']=username;
+}
+
+function GetOut() {
+  localStorage['username'] = '';
+  window.location.href = 'main.html';
+}
+
+function GetProfile() {
+  window.location.href = 'profile.html';
+}
+
