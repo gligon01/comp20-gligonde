@@ -352,3 +352,7 @@ function GetProfile() {
   window.location.href = 'profile.html';
 }
 
+function initializeProfile() {
+  document.getElementById('userinfo') = Welcome + localStorage['username'];
+}
+
